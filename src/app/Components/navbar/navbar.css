@@ -1,0 +1,22 @@
+navbar ul{
+    list-style: none;
+    background-color: color-mix(in srgb, var(--pill-accent) 5%, transparent);
+    padding: 0px;
+    margin: 0px;
+}
+
+.navbar a{
+    color: black;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+
+.navbar a:hover{
+    background-color: color-mix(in srgb, var(--pill-accent) 15%, transparent);
+}
+
+.navbar li{
+    float: left;
+}

@@ -1,0 +1,14 @@
+
+.mat-toolbar{
+  background: var(--red-to-pink-to-purple-horizontal-gradient);
+  color: white;
+  display: flex;
+  position: sticky;
+  top: 0;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.example-spacer{
+  flex: 1 1 auto;
+}
