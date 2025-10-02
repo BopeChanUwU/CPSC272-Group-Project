@@ -1,18 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
-import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
+import { Component, signal, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MenuButton } from "../menu-button/menu-button";
+import { Navbar } from "../navbar/navbar";
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule,MatMenuTrigger,MatIcon,MatMenu],
+  imports: [MatToolbarModule, MenuButton, Navbar],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
 export class Header { 
-  @ViewChild(MatMenuTrigger) trigger!: MatMenuTrigger;
 
-  toggleMenu() {
-    this.trigger.menuOpen ? this.trigger.closeMenu() : this.trigger.openMenu();
-  }
+  protected readonly title = signal('PotLuck');
+
 }

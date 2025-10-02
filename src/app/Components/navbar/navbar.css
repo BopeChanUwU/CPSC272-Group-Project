@@ -1,4 +1,4 @@
-navbar ul{
+.navbar ul{
     list-style: none;
     background-color: color-mix(in srgb, var(--pill-accent) 5%, transparent);
     padding: 0px;

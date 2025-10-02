@@ -1,119 +1,39 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Angular</title>
-    <base href="./" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="app" href="app.css" />
-  </head>
-  <body>
-
     
+<app-header></app-header>
 
-    <mat-toolbar>
-      <button matIconButton [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <mat-icon>angular-logo</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>dialpad</mat-icon>
-          <span>Home</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>voicemail</mat-icon>
-          <span>Profile</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Login</span>
-        </button>
-      </mat-menu>
-      <span>PotLuck</span>
-      <nav class="navbar">
-        <ul>
-          <li><a href="app.html">Home</a></li>
-          <li><a href="https://github.com/BopeChanUwU/hello-world/blob/Tristens-Test-Branch/src/app/login.html">Login</a></li>
-          <li><a href="phttps://github.com/BopeChanUwU/hello-world/blob/Tristens-Test-Branch/src/app/profile.html">Profile</a></li>
-        </ul>
-      </nav>
-      <span class="example-spacer"></span>
-      <button matIconButton class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button matIconButton class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-      </button>
-    </mat-toolbar>
-
-    
-    
-
-    <main>
-      <content>
-        
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Good food defs safe to eat</mat-card-title>
-          <mat-card-subtitle>Recipie</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            This is where the recipe will go
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button matButton>SKIP</button>
-          <button matButton>LIKE</button>
-        </mat-card-actions>
-      </mat-card>
-      <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Bad food defs danger to eat</mat-card-title>
-          <mat-card-subtitle>Recipe</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-content>
-          <p>
-            This is where the recipe will go
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button matButton>SKIP</button>
-          <button matButton>LIKE</button>
-        </mat-card-actions>
-      </mat-card>
-      </content>
-    </main>
-
-  </body>
-</html>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
+<main>
+  <content>
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Good food defs safe to eat</mat-card-title>
+        <mat-card-subtitle>Recipie</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p> This is where the recipe will go </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matButton>SKIP</button>
+        <button matButton>LIKE</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Bad food defs danger to eat</mat-card-title>
+        <mat-card-subtitle>Recipe</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p> This is where the recipe will go </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button matButton>SKIP</button>
+        <button matButton>LIKE</button>
+      </mat-card-actions>
+    </mat-card>
+    </content>
+  </main>
 
 <router-outlet />

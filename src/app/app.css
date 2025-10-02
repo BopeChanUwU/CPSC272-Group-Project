@@ -48,39 +48,6 @@
     margin: 0;
   }
 
-  .navbar ul{
-    list-style: none;
-    background-color: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-    padding: 0px;
-    margin: 0px;
-  }
-
-  .navbar a{
-    color: black;
-    text-decoration: none;
-    padding: 15px;
-    display: block;
-    text-align: center;
-  }
-
-  .navbar a:hover{
-    background-color: color-mix(in srgb, var(--pill-accent) 15%, transparent);
-  }
-
-  .navbar li{
-    float: left;
-  }
-
-  .mat-toolbar{
-    background: var(--red-to-pink-to-purple-horizontal-gradient);
-    color: white;
-    display: flex;
-    position: sticky;
-    top: 0;
-    padding: 20px;
-    z-index: 1000;
-  }
-
   .example-spacer{
     flex: 1 1 auto;
   }
@@ -105,10 +72,6 @@
     margin: 0;
     box-sizing: inherit;
     position: relative;
-  }
-
-  .angular-logo {
-    max-width: 9.2rem;
   }
 
   .content {
