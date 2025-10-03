@@ -8,10 +8,11 @@ import {MatCardModule} from '@angular/material/card';
 import { Header } from "./Components/header/header";
 import { Searchbar } from "./Components/searchbar/searchbar";
 import { Home } from "./home/home";
+import { Login } from "./login/login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Header, Searchbar, Home],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Header, Searchbar, Home, Login],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
