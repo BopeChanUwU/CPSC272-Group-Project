@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MatCard, MatCardModule } from "@angular/material/card";
 import { Searchbar } from "../Components/searchbar/searchbar";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { Header } from "../Components/header/header";
 
 @Component({
   selector: 'app-home',
-  imports: [MatCard, MatCardModule, Searchbar, MatToolbarModule],
+  imports: [MatCard, MatCardModule, Searchbar, MatToolbarModule, Header],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

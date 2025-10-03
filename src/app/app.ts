@@ -5,18 +5,23 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
-import { Header } from "./Components/header/header";
-import { Searchbar } from "./Components/searchbar/searchbar";
 import { Home } from "./home/home";
 import { Login } from "./login/login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Header, Searchbar, Home, Login],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Home, Login],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 
 export class App {
+  login: boolean = false;
+  home: boolean = false;
+  profile: boolean = false;
+
+  constructor (){
+    login: true;
+  }
   
 }
