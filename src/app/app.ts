@@ -6,10 +6,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { Header } from "./Components/header/header";
+import { Searchbar } from "./Components/searchbar/searchbar";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Header],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Header, Searchbar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
