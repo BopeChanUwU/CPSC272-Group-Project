@@ -19,6 +19,7 @@ export class App {
   login: boolean = false;
   home: boolean = false;
   profile: boolean = false;
+  title: string = 'PotLuck';
 
   constructor (){
     login: true;

@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatCard, MatCardModule } from "@angular/material/card";
 import { Searchbar } from "../Components/searchbar/searchbar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Header } from "../Components/header/header";
+import { MatIcon } from "@angular/material/icon"
+import { MatButton } from "@angular/material/button";
+import { Sidebar } from "../Components/sidebar/sidebar";
+import { MatGridList } from '@angular/material/grid-list';
+
 
 @Component({
   selector: 'app-home',
-  imports: [MatCard, MatCardModule, Searchbar, MatToolbarModule, Header],
+  imports: [MatCard, MatCardModule, Searchbar, MatToolbarModule, Header, MatIcon, MatButton, Sidebar, MatGridList],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
-
+  title = input();
 }
