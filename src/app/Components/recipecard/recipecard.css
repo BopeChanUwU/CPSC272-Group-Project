@@ -3,4 +3,9 @@
     padding: 10px;
     margin-left: 325px;
     margin-top: 20px;
-  }
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}
