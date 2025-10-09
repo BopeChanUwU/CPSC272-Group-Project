@@ -54,6 +54,7 @@
 
   .example-card {
     max-width: 400px;
+    z-index: 0;
   }
   
   .example-header-image {
@@ -74,6 +75,7 @@
     position: relative;
   }
 
+  
   .content {
     display: flex;
     justify-content: space-around;

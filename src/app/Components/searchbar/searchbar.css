@@ -33,7 +33,7 @@ form {
   top: 50%;
   left: 0;
   right: 0;
-  width: 925px;
+  width: 950px;
   height: 96px;
   padding: 35px;
   margin: -83px auto 0 auto;
@@ -137,8 +137,10 @@ button span:after {
 }
 
 .mat-toolbar{
-    background: white;
+    background: transparent;
     display: flex;
     position: sticky;
-    padding: 15px;
+    padding: 20px;
+    top: 120px;
+    z-index: 1000;
   }
