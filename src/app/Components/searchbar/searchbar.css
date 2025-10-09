@@ -140,7 +140,6 @@ button span:after {
     background: transparent;
     display: flex;
     position: sticky;
-    padding: 20px;
     top: 120px;
     z-index: 1000;
   }

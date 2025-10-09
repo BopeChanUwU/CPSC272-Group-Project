@@ -3,9 +3,8 @@
   background: var(--red-to-pink-to-purple-horizontal-gradient);
   color: white;
   display: flex;
-  position: sticky;
+  position: fixed;
   top: 0;
-  padding: 20px;
   z-index: 1000;
 }
 

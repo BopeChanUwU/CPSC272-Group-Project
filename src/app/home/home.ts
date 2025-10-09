@@ -1,17 +1,17 @@
 import { Component, input } from '@angular/core';
-import { MatCard, MatCardModule } from "@angular/material/card";
+import { MatCardModule } from "@angular/material/card";
 import { Searchbar } from "../Components/searchbar/searchbar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Header } from "../Components/header/header";
 import { MatIcon } from "@angular/material/icon"
 import { MatButton } from "@angular/material/button";
 import { Sidebar } from "../Components/sidebar/sidebar";
-import { MatGridList } from '@angular/material/grid-list';
+import { Recipecard } from "../Components/recipecard/recipecard";
 
 
 @Component({
   selector: 'app-home',
-  imports: [MatCard, MatCardModule, Searchbar, MatToolbarModule, Header, MatIcon, MatButton, Sidebar, MatGridList],
+  imports: [ MatCardModule, Searchbar, MatToolbarModule, Header, MatIcon, MatButton, Sidebar, Recipecard],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
