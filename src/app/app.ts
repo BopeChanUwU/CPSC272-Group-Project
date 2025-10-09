@@ -7,10 +7,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import { Home } from "./home/home";
 import { Login } from "./login/login";
+import { Profile } from "./profile/profile";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Home, Login],
+  imports: [RouterOutlet, MatToolbarModule, MatButtonModule, MatMenuModule, MatIconModule, MatCardModule, Home, Login, Profile],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

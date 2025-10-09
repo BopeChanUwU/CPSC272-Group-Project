@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { Navbar } from "../Components/navbar/navbar";
+import { Header } from '../Components/header/header';
 
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [ Navbar, Header],
   templateUrl: './profile.html',
   styleUrl: './profile.css'
 })

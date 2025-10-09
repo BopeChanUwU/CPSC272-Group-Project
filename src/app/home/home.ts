@@ -15,6 +15,7 @@ import { Recipecard } from "../Components/recipecard/recipecard";
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
+
 export class Home {
   title = input();
 }
