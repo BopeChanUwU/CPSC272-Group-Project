@@ -1,13 +1,19 @@
 import { Routes } from '@angular/router';
 import { Login } from './login/login';
+import { Home } from './home/home';
+import { Profile } from './profile/profile';
+import { Settings } from "./profile/settings/settings";
+import { Savedrecipes } from "./profile/savedrecipes/savedrecipes";
+import { Createrecipe } from "./profile/createrecipe/createrecipe";
+import { About } from './profile/about/about';
 
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
-    {path: 'home', loadComponent: () => import('./home/home').then(c => c.Home)},
-    {path: 'profile', loadComponent: () => import('./profile/profile').then(c => c.Profile)},
+    {path: 'home', component: Home},
+    {path: 'profile', component: Profile},
     {path: 'login', component: Login},
-    //{path: 'saved_recipes', loadComponent:() => import('./myrecipes/myrecipes').then(c => c.Myrecipes)}
-    //{path: 'profile_settings', loadComponent:() => import('./myrecipes/myrecipes').then(c => c.Myrecipes)}
-    //{path: 'about', loadComponent:() => import('./myrecipes/myrecipes').then(c => c.Myrecipes)},
-    //{path: 'create_recipe', loadComponent:() => import('./create-recipe/create-recipe').then(c => c.CreateRecipe)}
+    {path: 'profile/settings', component: Settings},
+    {path: 'profile/saved_recipes', component:Savedrecipes},
+    {path: 'about', component:About},
+    {path: 'profile/create_recipe', component: Createrecipe}
 ];
