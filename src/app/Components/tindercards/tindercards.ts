@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Recipecard } from "../../recipecard/recipecard";
+import { Recipecard } from "../recipecard/recipecard";
 
 @Component({
   selector: 'app-tindercards',

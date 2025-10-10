@@ -7,7 +7,7 @@ import { MatIcon } from "@angular/material/icon"
 import { MatButton } from "@angular/material/button";
 import { Sidebar } from "../Components/sidebar/sidebar";
 import { Recipecard } from "../Components/recipecard/recipecard";
-import { Tindercards } from "../Components/tindercards/tindercards/tindercards";
+import { Tindercards } from "../Components/tindercards/tindercards";
 
 
 @Component({
