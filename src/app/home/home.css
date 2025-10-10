@@ -61,19 +61,19 @@
     background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
-  
+
   main {
     width: 100%;
     min-height: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: white;
-    padding: 1rem;
-    margin: 0;
+    padding: 10rem;
+    margin: 0rem;
     box-sizing: inherit;
-    position: relative;
+    position: fixed;
   }
 
   
