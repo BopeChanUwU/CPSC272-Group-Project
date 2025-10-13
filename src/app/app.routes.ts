@@ -12,8 +12,8 @@ export const routes: Routes = [
     {path: 'home', component: Home},
     {path: 'profile', component: Profile},
     {path: 'login', component: Login},
-    {path: 'profile/settings', component: Settings},
-    {path: 'profile/saved_recipes', component:Savedrecipes},
+    {path: 'settings', component: Settings},
+    {path: 'saved_recipes', component:Savedrecipes},
     {path: 'about', component:About},
-    {path: 'profile/create_recipe', component: Createrecipe}
+    {path: 'create_recipe', component: Createrecipe}
 ];

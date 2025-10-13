@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <app-header></app-header>
 
 <main>
@@ -6,13 +8,15 @@
         <mat-card class="example-card" appearance="outlined">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title><mat-form-field><app-title-textfield></app-title-textfield></mat-form-field></mat-card-title>
+                <mat-form-field>
+                    <app-title-textfield></app-title-textfield>
+                </mat-form-field>
                 <mat-card-subtitle>User_ID</mat-card-subtitle>
             </mat-card-header>
             <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-content>
+            
                 <mat-form-field><app-description-textfield></app-description-textfield></mat-form-field>
-            </mat-card-content>
+            
         </mat-card>  
     </content>
     <app-create-button></app-create-button>
