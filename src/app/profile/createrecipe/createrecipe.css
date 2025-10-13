@@ -75,6 +75,7 @@
     margin: 0;
     box-sizing: inherit;
     position: relative;
+    overflow-y: auto;
   }
   
   
