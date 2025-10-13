@@ -10,7 +10,7 @@ import { About } from './profile/about/about';
 export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'home', component: Home},
-    {path: 'profile', component: Profile},
+    /* {path: 'profile', component: Profile}, */
     {path: 'login', component: Login},
     {path: 'settings', component: Settings},
     {path: 'saved_recipes', component:Savedrecipes},
