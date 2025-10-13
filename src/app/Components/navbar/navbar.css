@@ -5,6 +5,15 @@
     margin: 0px;
 }
 
+.navbar{
+    width: screen-width;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: last;
+    top: 0;
+    z-index: 1000;
+    margin-left: 1050px;
+}
+
 .navbar a{
     color: black;
     text-decoration: none;
