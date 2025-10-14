@@ -15,14 +15,12 @@
                 <mat-label>Recipe name</mat-label>
                 <input matInput>
             </mat-form-field>
-
-            <img mat-card-image src="https://material.angular.dev/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            
+            <app-drag-n-drop-box>
+            </app-drag-n-drop-box>
             <mat-form-field appearance='outline'>
                 <mat-label>Description</mat-label>
                 <textarea matInput></textarea>
             </mat-form-field>
-            
         </mat-card>  
     </content>
     <app-create-button></app-create-button>

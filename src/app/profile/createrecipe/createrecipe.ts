@@ -8,11 +8,12 @@ import { CreateButton } from "../../Components/create-button/create-button";
 import { MatFormField } from  "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/form-field';
+import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
 
 
 @Component({
   selector: 'app-createrecipe',
-  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel],
+  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox],
   templateUrl: './createrecipe.html',
   styleUrl: './createrecipe.css'
 })
