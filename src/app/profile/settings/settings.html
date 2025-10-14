@@ -1,8 +1,26 @@
 <app-header></app-header>
 
 <main>
+    <div>
     <app-sidebar></app-sidebar>
-    <content> 
-        <p>Settings works!</p>
-    </content>
+    </div>
+    <div>
+        <mat-card class = 'settings-card' appearance="outlined">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                <mat-card-title>Settings</mat-card-title>
+                <mat-card-subtitle>User_ID</mat-card-subtitle>
+            </mat-card-header>
+            
+                <mat-form-field appearance='outline'>
+                    <mat-label>First name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <mat-form-field appearance='outline'>
+                    <mat-label>Last name</mat-label>
+                    <input matInput>
+                </mat-form-field>
+                <Button matButton>Save Changes</Button>
+        </mat-card>
+    </div>
 </main>

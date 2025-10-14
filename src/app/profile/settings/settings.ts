@@ -4,10 +4,14 @@ import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Sidebar } from "../../Components/sidebar/sidebar";
+import { MatFormField } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatLabel } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-settings',
-  imports: [Header, MatCardModule, MatIconModule, MatToolbarModule, Sidebar],
+  imports: [Header, MatCardModule, MatIconModule, MatToolbarModule, Sidebar, MatFormField, MatInputModule, MatLabel, MatButtonModule],
   templateUrl: './settings.html',
   styleUrl: './settings.css'
 })
