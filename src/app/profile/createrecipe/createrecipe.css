@@ -24,6 +24,7 @@
     max-width: 400px;
     z-index: 0;
     background-color: #FFF;
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12);
   }
   
   .example-header-image {
@@ -44,6 +45,7 @@
     box-sizing: inherit;
     position: relative;
     overflow-y: auto;
+    margin-top: 50px;
   }
   
   
@@ -53,7 +55,7 @@
     width: 100%;
     max-width: 700px;
     margin-bottom: 3rem;
-    margin-top: 150px;
+    margin-top: 200px;
   }
   
   .content h1 {
