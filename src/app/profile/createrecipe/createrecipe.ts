@@ -9,6 +9,7 @@ import { MatFormField } from  "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/form-field';
 import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
+import { Recipe } from '../../models/recipe.model';
 
 
 @Component({
@@ -17,6 +18,23 @@ import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
   templateUrl: './createrecipe.html',
   styleUrl: './createrecipe.css'
 })
-export class Createrecipe {
+export class Createrecipe implements Recipe{
 
+  id: number;
+  title: string;
+  description: string;
+  ingredients: string[];
+  instructions: string[];
+  imageUrl: string;
+
+  constructor() {
+    this.id = 0;
+    this.title = '';
+    this.description = '';
+    this.ingredients = [];
+    this.instructions = [];
+    this.imageUrl = '';
+  }
+
+  
 }
