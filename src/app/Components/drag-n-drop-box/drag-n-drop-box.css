@@ -28,6 +28,7 @@
       background-color 400ms ease-in-out;
     word-spacing: -2px;
     width: 250px;
+    height: 2px;
   }
   .dragBox {
     width: 250px;
