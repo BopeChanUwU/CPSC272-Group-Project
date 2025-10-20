@@ -10,14 +10,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/form-field';
 import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
 import { Recipe } from '../../models/recipe.model';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-createrecipe',
-  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox],
+  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox, FormsModule],
   templateUrl: './createrecipe.html',
   styleUrl: './createrecipe.css'
 })
+
 export class Createrecipe implements Recipe{
 
   id: number;
@@ -36,5 +38,11 @@ export class Createrecipe implements Recipe{
     this.imageUrl = '';
   }
 
-  
+  createRecipe() {
+    // Logic to create a new recipe
+    console.log('Recipe Created:', this);
+    
+  }
+
+
 }
