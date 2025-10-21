@@ -42,7 +42,8 @@ export class Createrecipe implements Recipe{
     this.id = Date.now(); // Simple unique ID based on timestamp (not for production use! we will get IDs from user)
     // Logic to create a new recipe
     console.log('Recipe Created:', this);
-    
+    ((document.getElementById("recipe-name") as HTMLInputElement).value) = '';
+    ((document.getElementById("recipe-description") as HTMLInputElement).value) = '';
   }
 
    

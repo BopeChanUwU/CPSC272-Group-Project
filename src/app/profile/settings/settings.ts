@@ -19,4 +19,35 @@ import { SaveButton } from "../../Components/save-button/save-button";
 })
 export class Settings {
 
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  user_name: string;
+  imageUrl: string;
+
+  constructor() {
+    this.id = 0;
+    this.first_name = '';
+    this.last_name = '';
+    this.email = '';
+    this.user_name = '';
+    this.imageUrl = '';
+  }
+
+    updateSettings() {
+    this.first_name = ((document.getElementById("recipe-name") as HTMLInputElement).value);
+    this.last_name = ((document.getElementById("recipe-description") as HTMLInputElement).value);
+    this.user_name = ((document.getElementById("recipe-name") as HTMLInputElement).value);
+    this.email = ((document.getElementById("recipe-name") as HTMLInputElement).value);
+    this.imageUrl = ((document.getElementById("recipe-name") as HTMLInputElement).value);
+    this.id = Date.now(); // Simple unique ID based on timestamp (not for production use! we will get IDs from user)
+    // Logic to create a new recipe
+    console.log('User Updated:', this);
+    ((document.getElementById("recipe-name") as HTMLInputElement).value) = '';
+    ((document.getElementById("recipe-description") as HTMLInputElement).value) = '';
+    ((document.getElementById("recipe-name") as HTMLInputElement).value) = '';
+    ((document.getElementById("recipe-description") as HTMLInputElement).value) = '';
+    ((document.getElementById("recipe-name") as HTMLInputElement).value) = '';
+  }
 }
