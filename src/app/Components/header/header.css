@@ -11,3 +11,26 @@
 .example-spacer{
   flex: 1 1 auto;
 }
+
+.container {
+  display: flex;
+  justify-content: space-between; /* Pushes items to opposite ends */
+  align-items: flex-start; /* Aligns items to the top */
+}
+
+.left-content {
+  
+  flex-grow: 1; /* Allows it to take up available space */
+}
+
+a {
+  color: azure;
+  font:inherit;
+  text-decoration: none;
+  font-size: inherit;
+  text-align: center;
+  padding: 0
+}
+.right-navbar {
+  
+}

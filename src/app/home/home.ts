@@ -13,6 +13,6 @@ import { SkipButton } from "../Components/skip-button/skip-button";
 })
 
 export class Home {
-  title = input();
+
 
 }

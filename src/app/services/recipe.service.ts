@@ -6,7 +6,7 @@ import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
-  private apiUrl = `${environment.apiUrl}/families`;
+  private apiUrl = `${environment.apiUrl}/recipes`;
   constructor(private http: HttpClient) {}
 
   getRecipes(): Observable<Recipe[]> {

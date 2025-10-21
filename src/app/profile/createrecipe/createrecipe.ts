@@ -11,8 +11,6 @@ import { MatLabel } from '@angular/material/form-field';
 import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
 import { Recipe } from '../../models/recipe.model';
 import { FormsModule } from '@angular/forms';
-
-
 @Component({
   selector: 'app-createrecipe',
   imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox, FormsModule],
@@ -39,10 +37,14 @@ export class Createrecipe implements Recipe{
   }
 
   createRecipe() {
+    this.title = ((document.getElementById("recipe-name") as HTMLInputElement).value);
+    this.description = ((document.getElementById("recipe-description") as HTMLInputElement).value);
+    this.id = Date.now(); // Simple unique ID based on timestamp (not for production use! we will get IDs from user)
     // Logic to create a new recipe
     console.log('Recipe Created:', this);
     
   }
 
-
+   
+  
 }
