@@ -32,5 +32,21 @@ a {
   padding: 0
 }
 .right-navbar {
+  display:flex;
+  align-items: center;
+}
+img {
+ 
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  padding-top: 20px;
   
+}
+.text-link {
+  font-size: 24px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  padding-bottom: 40px;
 }
