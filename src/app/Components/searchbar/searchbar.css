@@ -36,9 +36,10 @@ form {
   width: 950px;
   height: 90px;
   padding: 35px;
+  padding-right: 10px;
   margin: -240px auto 0 auto;
-  background-color: /* #ff7575 */ transparent;
-  border-radius: 20px;
+  background-color: /* #ff7575 */ rgba(0,0,0,0.1);
+  border-radius: 100px;
   /* box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px transparent; */
   transform: scale(0.4);
 }

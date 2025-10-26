@@ -1,33 +1,49 @@
-.navbar ul{
+ul {
     list-style: none;
-    background-color: color-mix(in srgb, var(--pill-accent) 5%, transparent);
-    padding: 0px;
-    margin: 0px;
+    display: flex;
+    gap: 1rem; /* Space between items */
+    padding: 0;
+    margin: 0;
 }
 
-.navbar{
+.navbar {
     width: screen-width;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: last;
     top: 0;
     right: 0;
     z-index: 1000;
 }
 
-.navbar a{
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    display: block;
-    text-align: center;
+mat-icon {
+    /* box-shadow: 0 2px 6px rgba(0,0,0,0.4); */
+    /* border-radius: 50%; */
+    font-size: 24px;
+    /* vertical-align: sub; */
 }
 
-.navbar a:hover{
-    background-color: color-mix(in srgb, var(--pill-accent) 15%, transparent);
+a:hover,
+a:focus {
+ 
+    background-color: rgba(0,0,0,0.05);
+    outline: none; /* Remove default focus outline */
 }
 
-.navbar li{
-    float: left;
+a {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 58px; /* Set a fixed size for the button */
+  height: 58px;
+  border-radius: 50%; /* Make it circular */
+}
+
+li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
 }
 
 .example-spacer {
