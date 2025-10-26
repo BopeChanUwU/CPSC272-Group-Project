@@ -10,14 +10,14 @@
             </mat-card-header>
             <mat-form-field appearance='outline'>
                 <mat-label>Recipe name*</mat-label>
-                <input matInput type = "text" id="recipe-name">
+                <input matInput type = "text" id="recipe-name" required="">
             </mat-form-field>
             <app-drag-n-drop-box>
                 <input type="file" id="recipe-image" hidden>
             </app-drag-n-drop-box>
             <mat-form-field appearance='outline'>
                 <mat-label>Description*</mat-label>
-                <textarea matInput type="text" id="recipe-description"></textarea>
+                <textarea matInput type="text" id="recipe-description" required=""></textarea>
             </mat-form-field>
         </mat-card>  
     </content>
