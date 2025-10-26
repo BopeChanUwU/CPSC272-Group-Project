@@ -16,35 +16,6 @@
     margin: 0;
   }
 
-<<<<<<< HEAD
-  .example-spacer{
-    flex: 1 1 auto;
-  }
-
-  .example-card {
-    max-width: 400px;
-    z-index: 15;
-  }
-  /* SWIPE ANIMATIONS */
-  
-.swipe-right {
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(310%) rotate(30deg);
-}
-.swipe-left {
-  transition: transform 0.5s ease-in-out;
-  transform: translateX(-310%) rotate(-30deg);
-}
-
-
-  
-  .example-header-image {
-    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
-=======
->>>>>>> master
   main {
     width: 100%;
     min-height: 100%;

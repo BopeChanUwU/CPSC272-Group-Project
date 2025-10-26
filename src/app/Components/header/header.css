@@ -42,16 +42,6 @@ img {
   padding-top: 20px;
   
 }
-<<<<<<< HEAD
-=======
-img {
- 
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  padding-top: 20px;
-  
-}
->>>>>>> master
 .text-link {
   font-size: 24px;
   font-weight: 500;
