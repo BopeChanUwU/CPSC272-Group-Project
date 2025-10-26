@@ -16,7 +16,7 @@ body{
 	margin-bottom: 80px;
 	background: red;
 	overflow: hidden;
-	background: var(--red-to-pink-to-purple-vertical-gradient);
+	background: var(--red-to-orange-to-yellow-vertical-gradient);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
 }
@@ -62,7 +62,7 @@ button{
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: var(--french-violet);
+	background: var(--vibrant-yellow);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 30px;
@@ -74,7 +74,7 @@ button{
 }
 
 button:hover{
-	background: var(--french-violet);
+	background: var(--vibrant-yellow);
 }
 
 .login{
@@ -86,7 +86,7 @@ button:hover{
 }
 
 .login label{
-	color: var(--french-violet);
+	color: var(--vibrant-yellow);
 	transform: scale(.6);
 }
 
