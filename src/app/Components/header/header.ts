@@ -1,13 +1,13 @@
 import { Component, input, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MenuButton } from "../menu-button/menu-button";
 import { Navbar } from "../navbar/navbar";
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-header',
-  imports: [MatToolbarModule, MenuButton, Navbar, NgOptimizedImage, RouterLink],
+  imports: [MatToolbarModule, Navbar, NgOptimizedImage, RouterLink, MatTooltip],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })

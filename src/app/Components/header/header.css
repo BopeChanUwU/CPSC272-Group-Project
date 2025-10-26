@@ -1,5 +1,5 @@
 
-.mat-toolbar{
+.mat-toolbar {
   background: var(--red-to-orange-to-yellow-horizontal-gradient);
   color: white;
   display: flex;
@@ -8,7 +8,7 @@
   z-index: 1000;
 }
 
-.example-spacer{
+.example-spacer {
   flex: 1 1 auto;
 }
 
@@ -34,6 +34,7 @@ a {
 .right-navbar {
   
 }
+
 img {
  
   image-rendering: -webkit-optimize-contrast;
@@ -41,6 +42,7 @@ img {
   padding-top: 20px;
   
 }
+
 .text-link {
   font-size: 24px;
   font-weight: 500;

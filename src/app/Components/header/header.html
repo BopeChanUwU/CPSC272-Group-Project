@@ -1,11 +1,13 @@
 <mat-toolbar>
     <div class="left-content">
-        <a routerLink="/home"><img 
-            ngSrc = "/images/icon.png" alt="PotLuck" width="67" height = "67">
-            </a>
-        <a routerLink = "/home" class="text-link">PotLuck</a>
+        <a [routerLink]="['/home']">
+            <img ngSrc = "/images/icon.png" alt="PotLuck" width="67" height = "67">
+        </a>
+        <a [routerLink]="['/home']" class="text-link">
+            PotLuck
+        </a>
     </div>
     <div class="right-navbar">
-        <app-navbar class = 'right-navbar'></app-navbar>
+        <app-navbar class='right-navbar'></app-navbar>
     </div>
 </mat-toolbar>
