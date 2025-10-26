@@ -5,6 +5,9 @@
     --vivid-pink: oklch(69.02% 0.277 332.77);
     --hot-red: oklch(61.42% 0.238 15.34);
     --orange-red: oklch(63.32% 0.24 31.68);
+    --vibrant-yellow: oklch(80% 0.25 85);
+    --bright-orange: oklch(63.32% 0.24 31.68);
+    --fiery-red: oklch(65% 0.38 15.34); 
 
     --gray-900: oklch(19.37% 0.006 300.98);
     --gray-700: oklch(36.98% 0.014 302.71);
@@ -23,6 +26,20 @@
       var(--vivid-pink) 50%,
       var(--electric-violet) 100%
     );
+
+    --red-to-orange-to-yellow-vertical-gradient: linear-gradient(
+    180deg,
+    var(--fiery-red) 0%, 
+    var(--bright-orange) 50%, 
+    var(--vibrant-yellow) 100% 
+    );
+
+    --red-to-orange-to-yellow-horizontal-gradient: linear-gradient(
+    90deg,
+    var(--fiery-red) 0%, 
+    var(--bright-orange) 50%, 
+    var(--vibrant-yellow) 100% 
+);
 
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",

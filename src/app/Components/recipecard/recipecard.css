@@ -1,6 +1,7 @@
 .example-card {
     max-width: 400px;
-    margin-left: 325px;
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
     position: center;
     background-color: #FFF;

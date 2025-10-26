@@ -1,6 +1,6 @@
 
 .mat-toolbar{
-  background: var(--red-to-pink-to-purple-horizontal-gradient);
+  background: var(--red-to-orange-to-yellow-horizontal-gradient);
   color: white;
   display: flex;
   position: fixed;
@@ -27,7 +27,7 @@ a {
   color: azure;
   font:inherit;
   text-decoration: none;
-  font-size: inherit;
+  font-size: 35px;
   text-align: center;
   padding: 0
 }
@@ -42,6 +42,16 @@ img {
   padding-top: 20px;
   
 }
+<<<<<<< HEAD
+=======
+img {
+ 
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  padding-top: 20px;
+  
+}
+>>>>>>> master
 .text-link {
   font-size: 24px;
   font-weight: 500;

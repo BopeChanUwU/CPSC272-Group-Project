@@ -1,13 +1,18 @@
+<<<<<<< HEAD
 import { Component, signal, input, ChangeDetectionStrategy } from '@angular/core';
+=======
+import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
+>>>>>>> master
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Header } from "../Components/header/header";
 import { LikeButton } from "../Components/like-button/like-button";
 import { SkipButton } from "../Components/skip-button/skip-button";
+import { HomeCard } from "../Components/home-card/home-card";
 
 @Component({
   selector: 'app-home',
-  imports: [MatCardModule, MatToolbarModule, Header, LikeButton, SkipButton],
+  imports: [MatCardModule, MatToolbarModule, Header, LikeButton, SkipButton, HomeCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -41,6 +46,9 @@ export class Home {
       this.isLocked.set(false); // Unlock the buttons
       console.log('Animation reset')
     }, 800);
+<<<<<<< HEAD
   //Plan to add a reset transition after animation completes. New card comes in from the bottom and sits in the center
+=======
+>>>>>>> master
   }
 }
