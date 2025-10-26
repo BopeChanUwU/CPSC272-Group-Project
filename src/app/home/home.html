@@ -3,10 +3,12 @@
 
 <main>
     <content>
-    <app-skip-button></app-skip-button>
+    <app-skip-button (skipped)="onSkip()"></app-skip-button>
     </content>
     <content>  
-        <app-home-card></app-home-card>
+        
+<app-home-card [isLiked]="isLiked()" [isSkipped]="isSkipped()"></app-home-card>
+
         <!-- <mat-card class="example-card" appearance="outlined">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
@@ -20,6 +22,6 @@
         </mat-card> -->
     </content>
     <content> 
-    <app-like-button></app-like-button>
+    <app-like-button (liked)="onLike()"></app-like-button>
     </content>
 </main>

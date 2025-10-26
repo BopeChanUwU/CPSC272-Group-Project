@@ -1,4 +1,8 @@
-<mat-card class="example-card" appearance="outlined">
+<mat-card class="example-card" [ngClass]="{
+    'swipe-right': isLiked,
+    'swipe-left': isSkipped
+  }"
+ appearance="outlined">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{recipeTitle}}</mat-card-title>

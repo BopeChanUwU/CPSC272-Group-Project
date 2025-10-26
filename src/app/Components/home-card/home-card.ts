@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home-card',
-  imports: [MatCardModule],
+  imports: [MatCardModule, CommonModule],
+  standalone: true,
   templateUrl: './home-card.html',
   styleUrl: './home-card.css'
 })
 export class HomeCard {
+
+
+  @Input() isLiked: boolean = false;
+  @Input() isSkipped: boolean = false;
 
   ingredients: string[] = ['1 cup of flour', '2 eggs', '1/2 cup of sugar', '1 tsp of baking powder'];
   instructions: string[] = [
@@ -24,5 +30,5 @@ export class HomeCard {
   creatorProfilePic:  string = 'https://media.istockphoto.com/id/2171382633/vector/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.jpg?s=170667a&w=0&k=20&c=C0GFBgcEAPMXFFQBSK-rS2Omt9sUGImXfJE_8JOWC0M=';
   likesCount: number = 120;
   imgSrc: string = 'https://teakandthyme.com/wp-content/uploads/2024/05/jellycat-birthday-cake-DSC_9332-edit-1600.jpg';
-  isLiked: boolean = false;
+  
 }
