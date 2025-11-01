@@ -20,7 +20,9 @@ import { FormsModule } from '@angular/forms';
 
 export class Createrecipe implements Recipe{
 
-  id: number;
+  recipe_id: number;
+  author_id: number;
+  user_name: string;
   title: string;
   description: string;
   ingredients: string[];
@@ -28,7 +30,9 @@ export class Createrecipe implements Recipe{
   imageUrl: string;
 
   constructor() {
-    this.id = 0;
+    this.recipe_id = 0;
+    this.author_id = 0;
+    this.user_name = '';
     this.title = '';
     this.description = '';
     this.ingredients = [];
@@ -39,7 +43,7 @@ export class Createrecipe implements Recipe{
   createRecipe() {
     this.title = ((document.getElementById("recipe-name") as HTMLInputElement).value);
     this.description = ((document.getElementById("recipe-description") as HTMLInputElement).value);
-    this.id = Date.now(); // Simple unique ID based on timestamp (not for production use! we will get IDs from user)
+    this.recipe_id = Date.now(); // Simple unique ID based on timestamp (not for production use! we will get IDs from user)
     // Logic to create a new recipe
     console.log('Recipe Created:', this);
     ((document.getElementById("recipe-name") as HTMLInputElement).value) = '';
