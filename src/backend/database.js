@@ -1,4 +1,4 @@
-// server.js (or a separate db.js file)
+// database.js
 const { Pool } = require('pg');
 
 // Use environment variables for secure, best practice configuration
@@ -8,6 +8,9 @@ const pool = new Pool({
   database: 'potluck',
   password: 'potluck123',
   port: 5432, // default PostgreSQL port
+  ssl: {
+    rejectUnauthorized: false 
+  }
 });
 
 // Test the connection
