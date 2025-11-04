@@ -30,3 +30,17 @@ mat-card image {
   transition: transform 0.5s ease-in-out;
   transform: translateX(-310%) rotate(-30deg);
 }
+
+@keyframes resetPosition {
+  0% {
+    transform: translateY(100%) rotate(0deg) scale(0.65);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+.reset-position {
+  animation: resetPosition 0.5s ease forwards;
+}

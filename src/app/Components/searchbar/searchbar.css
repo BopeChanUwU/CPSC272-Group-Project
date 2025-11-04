@@ -30,16 +30,16 @@ button {
 
 form {
   position: relative;
-  top: 50%;
+  top: 0%;
   left: 0;
   right: 0;
   width: 950px;
-  height: 96px;
+  height: 90px;
   padding: 35px;
-  margin: -83px auto 0 auto;
-  background-color: #ff7575;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px #ff7c7c, 0 0 0 20px #ffffffeb;
+  padding-right: 10px;
+  margin: -240px auto 0 auto;
+  background-color: /* #ff7575 */ rgba(0,0,0,0.1);
+  border-radius: 100px;
   transform: scale(0.4);
 }
 
@@ -51,7 +51,7 @@ input[type="text"] {
 }
 
 input[type="text"]::placeholder {
-  color: #e16868;
+  color: #fff;
 }
 
 button {
