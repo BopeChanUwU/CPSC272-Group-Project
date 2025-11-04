@@ -7,7 +7,11 @@ import { MatTooltip } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-header',
+<<<<<<< HEAD
   imports: [MatToolbarModule, Navbar, NgOptimizedImage, RouterLink, MatTooltip],
+=======
+  imports: [MatToolbarModule, Navbar, NgOptimizedImage, RouterLink],
+>>>>>>> Ryans-Test-Branch
   templateUrl: './header.html',
   styleUrl: './header.css'
 })

@@ -11,9 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class HomeCard {
 
-
   @Input() isLiked: boolean = false;
   @Input() isSkipped: boolean = false;
+  @Input() resetAnimation: boolean = false;
 
   ingredients: string[] = ['1 cup of flour', '2 eggs', '1/2 cup of sugar', '1 tsp of baking powder'];
   instructions: string[] = [

@@ -59,8 +59,15 @@
       margin-block: 1.5rem;
     }
   }
+  
+/* Adding z-index to keep card always above the buttons on the animation (im picky) */  
+#home-card{
+  position: relative;
+  z-index: 10;
+}
 
-  /* SWIPE ANIMATIONS */
+
+/* SWIPE ANIMATIONS : Redundant to keep here, now in home-card
   
 .swipe-right {
   transition: transform 0.5s ease-in-out;
@@ -69,4 +76,4 @@
 .swipe-left {
   transition: transform 0.5s ease-in-out;
   transform: translateX(-310%) rotate(-30deg);
-}
+} */

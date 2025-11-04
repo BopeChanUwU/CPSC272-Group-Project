@@ -32,7 +32,8 @@ a {
   padding: 0
 }
 .right-navbar {
-  
+  display:flex;
+  align-items: center;
 }
 
 img {

@@ -3,11 +3,12 @@
 
 <main>
     <content>
-    <app-skip-button (skipped)="onSkip()"></app-skip-button>
+        <app-skip-button (skipped)="onSkip()"></app-skip-button>
     </content>
-    <content>  
-        
-<app-home-card [isLiked]="isLiked()" [isSkipped]="isSkipped()"></app-home-card>
+
+    <!-- Adding id here to modify for z-index in CSS -->
+    <content>      
+        <app-home-card id="home-card" [isLiked]="isLiked()" [isSkipped]="isSkipped()" [resetAnimation]="resetAnimation()"></app-home-card>
 
         <!-- <mat-card class="example-card" appearance="outlined">
             <mat-card-header>
@@ -21,7 +22,8 @@
             </mat-card-content>
         </mat-card> -->
     </content>
+
     <content> 
-    <app-like-button (liked)="onLike()"></app-like-button>
+        <app-like-button (liked)="onLike()"></app-like-button>
     </content>
 </main>
