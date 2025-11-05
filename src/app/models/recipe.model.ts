@@ -1,8 +1,9 @@
 export interface Recipe {
-  id: number;
+  recipe_id: number;
+  author_id: number;
   title: string;
   description: string;
-  name?: string;
+  user_name: string;
   ingredients?: string[];
   instructions?: string[];
   imageUrl?: string;
