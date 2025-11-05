@@ -63,19 +63,7 @@
 
   body {
     margin: 0;
-  }
-
-  .example-spacer{
-    flex: 1 1 auto;
-  }
-
-  .example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.dev/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+    overflow-x: hidden;
   }
   
   main {
@@ -89,38 +77,6 @@
     margin: 0;
     box-sizing: inherit;
     position: relative;
+    overflow-x: hidden;
   }
 
-  .content {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 700px;
-    margin-bottom: 3rem;
-  }
-
-  .content h1 {
-    margin-top: 1.75rem;
-  }
-
-  .content p {
-    margin-top: 1.5rem;
-  }
-
-  .mat-toolbar{
-    background: white;
-  }
-  
-  @media screen and (max-width: 650px) {
-    .content {
-      flex-direction: column;
-      width: max-content;
-    }
-
-    .divider {
-      height: 1px;
-      width: 100%;
-      background: var(--red-to-pink-to-purple-horizontal-gradient);
-      margin-block: 1.5rem;
-    }
-  }

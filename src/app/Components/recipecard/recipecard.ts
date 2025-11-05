@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 
-
 @Component({
   selector: 'app-recipecard',
   imports: [MatCardModule],
@@ -20,7 +19,7 @@ export class Recipecard {
     'Let it cool before serving.'
   ];
   recipeTitle: string = 'Delicious Cake';
-  recipeDescription: string = 'A simple and delicious cake recipe that is perfect for any occasion.';
+  recipeDescription: string = 'A simple and delicious cake recipe that is perfect for any occasion. the cake is a lie!';
   creatorName: string = 'John Doe';
   creatorProfilePic:  string = 'https://media.istockphoto.com/id/2171382633/vector/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.jpg?s=170667a&w=0&k=20&c=C0GFBgcEAPMXFFQBSK-rS2Omt9sUGImXfJE_8JOWC0M=';
   likesCount: number = 120;
