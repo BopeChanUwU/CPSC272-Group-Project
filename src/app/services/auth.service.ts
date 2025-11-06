@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   
   private loggedIn = false;
-  private userId: number | null= null;
+  private userId: number | undefined = -1; // user set to -1 when not logged in
   
   constructor() {}
   isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
-  login(): void {
+  login(currentUser: User): void {
     this.loggedIn = true;
-    this.userId = 1; // example user ID
+    this.userId = currentUser.user_id; // set userId upon login
   }
 
   logout(): void {
     this.loggedIn = false;
-    this.userId = null;
+    this.userId = -1;
+  }
+
+  userIdValue(): number | undefined {
+    return this.userId;
   }
 }
