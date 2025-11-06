@@ -17,9 +17,10 @@
 } */
 
 mat-card image {
-    max-height: 50px;
-    width: 400px;
-    object-fit: scale-down;
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .example-header-image {
