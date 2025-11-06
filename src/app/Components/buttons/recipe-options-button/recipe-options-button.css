@@ -1,0 +1,9 @@
+.main-button {
+    border-radius: 50%;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+button:hover {
+    background-color: #f0f0f0;
+}

@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
+import { RecipeOptionsButton } from '../../buttons/recipe-options-button/recipe-options-button';
 
 @Component({
   selector: 'app-recipecard',
-  imports: [MatCardModule],
+  imports: [MatCardModule, RecipeOptionsButton],
   templateUrl: './recipecard.html',
   styleUrl: './recipecard.css'
 })
