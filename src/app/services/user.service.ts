@@ -26,6 +26,4 @@ export class UserService {
   const url = `${this.apiUrl}/login`;
   return this.http.post<User>(url, { email, password });
   }
-
-
 }
