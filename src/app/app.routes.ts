@@ -12,29 +12,29 @@ export const routes: Routes = [
     {path: '', redirectTo: 'login', pathMatch: 'full'},
     {path: 'home', 
         component: Home,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
     {path: 'login', 
         component: Login
     },
     {path: 'settings', 
         component: Settings,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
     {path: 'saved_recipes', 
         component:Savedrecipes,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
     {path: 'about', 
         component:About,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
     {path: 'create_recipe', 
         component: Createrecipe,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
     {path: 'my_recipes', 
         component:Myrecipes,
-        /* canActivate: [authGuard] */ //auth guard to protect route
+        canActivate: [authGuard]  //auth guard to protect route
     },
 ];
