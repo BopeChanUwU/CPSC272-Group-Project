@@ -6,6 +6,7 @@ import { Settings } from "./profile/settings/settings";
 import { Savedrecipes } from "./profile/savedrecipes/savedrecipes";
 import { Createrecipe } from "./profile/createrecipe/createrecipe";
 import { About } from './profile/about/about';
+import { Editmyrecipes } from './profile/myrecipes/editmyrecipes/editmyrecipes';
 import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
@@ -35,6 +36,10 @@ export const routes: Routes = [
     },
     {path: 'my_recipes', 
         component:Myrecipes,
+        /* canActivate: [authGuard] */ //auth guard to protect route
+    },
+    {path: 'edit_my_recipes', 
+        component:Editmyrecipes,
         /* canActivate: [authGuard] */ //auth guard to protect route
     },
 ];

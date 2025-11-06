@@ -1,5 +1,4 @@
-
-  main {
+main {
     width: 100%;
     min-height: 100%;
     display: flex;
@@ -13,13 +12,13 @@
     position: relative;
     overflow-y: auto;
     margin-top: 50px;
-  }
+}
   
-  .content {
+.content {
     display: flex;
     justify-content: space-around;
     width: 100%;
     max-width: 700px;
     margin-bottom: 3rem;
     margin-top: 200px;
-  }
+}

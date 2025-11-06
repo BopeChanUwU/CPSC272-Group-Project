@@ -1,19 +1,21 @@
 import { Component } from '@angular/core';
-import { Header } from "../../Components/header/header";
-import { Sidebar } from "../../Components/sidebar/sidebar";
+import { Header } from "../../Components/bars/header/header";
+import { Sidebar } from "../../Components/bars/sidebar/sidebar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCardModule } from "@angular/material/card";
 import { MatIconModule } from "@angular/material/icon";
-import { CreateButton } from "../../Components/create-button/create-button";
+import { CreateButton } from "../../Components/buttons/create-button/create-button";
 import { MatFormField } from  "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatLabel } from '@angular/material/form-field';
 import { DragNDropBox } from "../../Components/drag-n-drop-box/drag-n-drop-box";
 import { Recipe } from '../../models/recipe.model';
+import { RecipeService } from '../../services/recipe.service';
 import { FormsModule } from '@angular/forms';
+import { CreationCard } from "../../Components/cards/creation-card/creation-card";
 @Component({
   selector: 'app-createrecipe',
-  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox, FormsModule],
+  imports: [Header, Sidebar, MatToolbarModule, MatCardModule, MatIconModule, CreateButton, MatFormField, MatInputModule, MatLabel, DragNDropBox, FormsModule, CreationCard],
   templateUrl: './createrecipe.html',
   styleUrl: './createrecipe.css'
 })

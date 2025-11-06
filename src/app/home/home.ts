@@ -1,10 +1,10 @@
 import { Component, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { Header } from "../Components/header/header";
-import { LikeButton } from "../Components/like-button/like-button";
-import { SkipButton } from "../Components/skip-button/skip-button";
-import { HomeCard } from "../Components/home-card/home-card";
+import { Header } from "../Components/bars/header/header";
+import { LikeButton } from "../Components/buttons/like-button/like-button";
+import { SkipButton } from "../Components/buttons/skip-button/skip-button";
+import { HomeCard } from "../Components/cards/home-card/home-card";
 
 @Component({
   selector: 'app-home',

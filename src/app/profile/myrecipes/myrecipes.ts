@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { Sidebar } from "../../Components/sidebar/sidebar";
-import { Header } from "../../Components/header/header";
+import { Sidebar } from "../../Components/bars/sidebar/sidebar";
+import { Header } from "../../Components/bars/header/header";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { Searchbar } from "../../Components/searchbar/searchbar";
-import { Recipecard } from "../../Components/recipecard/recipecard";
-import { DeleteButton } from "../../Components/delete-button/delete-button";
+import { Searchbar } from "../../Components/bars/searchbar/searchbar";
+import { Recipecard } from "../../Components/cards/recipecard/recipecard";
+import { DeleteButton } from "../../Components/buttons/delete-button/delete-button";
 import { CommonModule } from '@angular/common';
 
 @Component({

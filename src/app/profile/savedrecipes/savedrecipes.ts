@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Header } from "../../Components/header/header";
-import { Sidebar } from "../../Components/sidebar/sidebar";
-import { Searchbar } from "../../Components/searchbar/searchbar";
+import { Header } from "../../Components/bars/header/header";
+import { Sidebar } from "../../Components/bars/sidebar/sidebar";
+import { Searchbar } from "../../Components/bars/searchbar/searchbar";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCardModule } from "@angular/material/card";
-import { Recipecard } from "../../Components/recipecard/recipecard";
+import { Recipecard } from "../../Components/cards/recipecard/recipecard";
 import { MatIconModule } from "@angular/material/icon";
-import { DislikeButton } from "../../Components/dislike-button/dislike-button";
+import { DislikeButton } from "../../Components/buttons/dislike-button/dislike-button";
 import { CommonModule } from '@angular/common';
 
 @Component({
