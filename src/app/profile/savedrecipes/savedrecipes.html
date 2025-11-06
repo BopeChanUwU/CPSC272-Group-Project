@@ -4,8 +4,18 @@
     <app-sidebar></app-sidebar>
     <content> 
         <app-searchbar class="searchbar"></app-searchbar>
-        <app-recipecard></app-recipecard>
-        <app-recipecard></app-recipecard>
+        <app-recipecard 
+            *ngFor="let recipe of recipes"
+            [recipeTitle]="recipe.recipeTitle"
+            [recipeDescription]="recipe.recipeDescription"
+            [creatorName]="recipe.creatorName"
+            [creatorProfilePic]="recipe.creatorProfilePic"
+            [imgSrc]="recipe.imgSrc"
+            [ingredients]="recipe.ingredients"
+            [instructions]="recipe.instructions"
+            [likesCount]="recipe.likesCount"
+            [isLiked]="recipe.isLiked">
+        </app-recipecard>
     </content>
     <app-dislike-button></app-dislike-button>
 </main>

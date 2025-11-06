@@ -20,6 +20,11 @@ export class Home {
   isLocked = signal(false); // New signal to manage lock state (both buttons not clicked together)
   resetAnimation = signal(false); //State for reset animation
 
+  getNextRecipe() {
+    // Placeholder for fetching the next recipe logic
+    console.log('Fetching next recipe...');
+  }
+
   onLike() {
     if (this.isLocked()) return; // Prevent action if locked
     this.isLiked.set(true);
