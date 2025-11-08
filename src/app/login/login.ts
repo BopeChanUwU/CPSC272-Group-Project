@@ -18,13 +18,13 @@ import { AuthService } from '../services/auth.service';
 export class Login {
   // Form data for login and registration
     user: User = {
-    user_id: 0,
+    user_id: undefined,
     user_name: '',
     first_name: '',
     last_name: '',
     email: '',
     password: '',
-    image_url: ''
+    image_url: undefined
   };
 
   message = ''; // Feedback message to show success/error

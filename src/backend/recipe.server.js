@@ -1,8 +1,9 @@
+
 const express = require('express');
 const cors = require('cors');
 const pool = require('./database'); // your PostgreSQL connection
 const app = express();
-const port = 3001; // you can change this if needed
+const port = 3000; // you can change this if needed
 
 // Middleware
 app.use(cors());
