@@ -19,7 +19,7 @@ export class SavedRecipiesService {
 
   // Unsave a recipe
   unsaveRecipe(recipe_id: number, user_id: number): Observable<any> {
-    return this.http.request('delete', this.apiUrl, { body: { recipe_id, user_id } });
+    return this.http.delete(this.apiUrl, { body: { recipe_id, user_id } });
   }
 
   // Get all saved recipes
