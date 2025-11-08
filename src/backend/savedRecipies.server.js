@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const pool = require('./database'); // same database.js you already use
+const pool = require('./database');
 const app = express();
-const port = 3000; // use a new port or merge into your main app
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
