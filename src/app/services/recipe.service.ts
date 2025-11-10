@@ -21,4 +21,11 @@ export class RecipeService {
   deleteRecipe(id: number): Observable<{ ok: boolean }> {
     return this.http.delete<{ ok: boolean }>(`${this.apiUrl}/${id}`);
   }
+  getRecipesByAuthor(author_id: number): Observable<Recipe[]> {
+  return this.http.get<Recipe[]>(`${this.apiUrl}/author/${author_id}`);
+  }
+  getRecipesExceptAuthor(author_id: number): Observable<Recipe[]> {
+  return this.http.get<Recipe[]>(`${this.apiUrl}/exclude/${author_id}`);
+  }
+
 }

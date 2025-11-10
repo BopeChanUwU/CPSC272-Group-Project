@@ -12,8 +12,9 @@ export class UserService {
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);
   }
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(this.apiUrl + `/${id}`);
+  getUserByEmailPassword(email: string, password: string): Observable<User> {
+  const url = `${this.apiUrl}/login/auth`;
+  return this.http.post<User>(url, { email, password });
   }
   addUser(u: User): Observable<User> {
     return this.http.post<User>(this.apiUrl, u);

@@ -1,115 +1,140 @@
-// server.js
+
 const express = require('express');
 const cors = require('cors');
-const db = require('./database');
+const pool = require('./database'); // your PostgreSQL connection
 const app = express();
-const port = 3000; // Choose a port different from Angular (e.g., 4200)
+const port = 3000; // you can change this if needed
 
 // Middleware
-app.use(cors()); // Enables cross-origin requests
-app.use(express.json()); // Parses incoming requests with JSON payloads
+app.use(cors());
+app.use(express.json());
 
-// Simple test route
-app.get('/', (req, res) => {
-  res.send('Node.js API is running!');
+// ----------------- CRUD ROUTES -----------------
+
+// CREATE recipe
+app.post('/api/recipes', async (req, res) => {
+  try {
+    const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
+
+    const result = await pool.query(
+      `INSERT INTO public.recipes (author_id, title, description, user_name, ingredients, instructions, image_url)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING *`,
+      [author_id, title, description, user_name, ingredients, instructions, image_url]
+    );
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('CREATE RECIPE ERROR:', err.message);
+    res.status(500).json({ message: 'Error creating recipe', error: err.message });
+  }
 });
 
-// ===============================================
-// 1. CREATE (C) - HTTP POST
-// ===============================================
-// Angular: userService.createUser(user) -> POST /api/users
-app.post('/', async (req, res) => {
-    try {
-        const { id, user_name, first_name, last_name, email, password, imageUrl } = req.body; // Data sent from Angular component
-        const sql = 'INSERT INTO potluck.users (id, user_name, first_name, last_name, email, password, imageUrl) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;';
-        const result = await db.query(sql, [id, user_name, first_name, last_name, email, password, imageUrl]);
-        
-        // Return the newly created user object back to Angular
-        res.status(201).json(result.rows[0]); 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error creating user" });
-    }
+// READ all recipes
+app.get('/api/recipes', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM public.recipes ORDER BY recipe_id');
+    res.json(result.rows);
+  } catch (err) {
+    console.error('READ RECIPES ERROR:', err.message);
+    res.status(500).json({ message: 'Error fetching recipes' });
+  }
 });
 
-// ===============================================
-// 2. Get (G) - HTTP GET
-// ===============================================
-// Angular: userService.getUsers() -> GET /api/users
-app.get('/', async (req, res) => {
-    try {
-        const sql = 'SELECT id, name, email FROM potluck.users ORDER BY id;';
-        const result = await db.query(sql);
-        
-        // Return an array of users as JSON
-        res.status(200).json(result.rows);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error fetching users" });
+// READ single recipe by ID
+app.get('/api/recipes/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('SELECT * FROM public.recipes WHERE recipe_id = $1', [id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Recipe not found' });
     }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('READ RECIPE ERROR:', err.message);
+    res.status(500).json({ message: 'Error fetching recipe' });
+  }
 });
 
-// ===============================================
-// 3. UPDATE (U) - HTTP PUT/PATCH
-// ===============================================
-// Angular: userService.updateUser(user) -> PUT /api/users/:id
-app.put('/:id', async (req, res) => {
-    try {
-        const userId = req.params.id;
-        const { name, email } = req.body;
-        const sql = 'UPDATE potluck.users SET name = $1, email = $2 WHERE id = $3 RETURNING *;';
-        const result = await db.query(sql, [name, email, userId]);
-        
-        if (result.rowCount === 0) {
-            return res.status(404).json({ message: "User not found" });
-        }
+// UPDATE recipe by ID
+app.put('/api/recipes/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
 
-        // Return the updated user object
-        res.status(200).json(result.rows[0]);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error updating user" });
+    const result = await pool.query(
+      `UPDATE public.recipes
+       SET author_id=$1, title=$2, description=$3, user_name=$4,
+           ingredients=$5, instructions=$6, image_url=$7
+       WHERE recipe_id=$8
+       RETURNING *`,
+      [author_id, title, description, user_name, ingredients, instructions, image_url, id]
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Recipe not found' });
     }
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error('UPDATE RECIPE ERROR:', err.message);
+    res.status(500).json({ message: 'Error updating recipe' });
+  }
+});
+
+// DELETE recipe by ID
+app.delete('/api/recipes/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query('DELETE FROM public.recipes WHERE recipe_id=$1 RETURNING *', [id]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'Recipe not found' });
+    }
+
+    res.json({ message: 'Recipe deleted', recipe: result.rows[0] });
+  } catch (err) {
+    console.error('DELETE RECIPE ERROR:', err.message);
+    res.status(500).json({ message: 'Error deleting recipe' });
+  }
+});
+
+// GET recipes by author
+app.get('/api/recipes/author/:author_id', async (req, res) => {
+  try {
+    const { author_id } = req.params;
+    const result = await pool.query(
+      'SELECT * FROM public.recipes WHERE author_id = $1 ORDER BY recipe_id',
+      [author_id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('GET RECIPES BY AUTHOR ERROR:', err.message);
+    res.status(500).json({ message: 'Error fetching recipes by author' });
+  }
+});
+
+// GET recipes except author
+app.get('/api/recipes/exclude/:author_id', async (req, res) => {
+  try {
+    const { author_id } = req.params;
+    const result = await pool.query(
+      'SELECT * FROM public.recipes WHERE author_id != $1 ORDER BY recipe_id',
+      [author_id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('GET RECIPES EXCEPT AUTHOR ERROR:', err.message);
+    res.status(500).json({ message: 'Error fetching recipes excluding author' });
+  }
 });
 
 
-// ===============================================
-// 4. DELETE (D) - HTTP DELETE
-// ===============================================
-// Angular: userService.deleteUser(id) -> DELETE /api/users/:id
-app.delete('/:id', async (req, res) => {
-    try {
-        const userId = req.params.id;
-        const sql = 'DELETE FROM potluck.users WHERE id = $1;';
-        const result = await db.query(sql, [userId]);
-        
-        if (result.rowCount === 0) {
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        // Send a 204 No Content status on successful deletion
-        res.status(204).send(); 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error deleting user" });
-    }
-});
-
-// ===============================================
-// 5. READ (R) - HTTP Read
-// ===============================================
-// Reads user with email and password.
-
-app.read('/', async (req, res) => {
-    try {
-        const {email, password} = req.body; // Data sent from Angular component
-        const sql = 'SELECT id, user_name, first_name, last_name, email, password, imageUrl FROM potluck.users WHERE email=$1, password=$2;';
-        const result = await db.query(sql, [id, user_name, first_name, last_name, email, password, imageUrl]);
-        
-        // Return the user object back to Angular
-        res.status(201).json(result.rows[0]); 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error reading user" });
-    }
+// ----------------- START SERVER -----------------
+app.listen(port, () => {
+  console.log(`✅ Recipe server running on http://localhost:${port}`);
 });
