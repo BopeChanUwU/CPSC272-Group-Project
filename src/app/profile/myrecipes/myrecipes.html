@@ -6,6 +6,7 @@
         <app-searchbar class="searchbar"></app-searchbar>
         <app-recipecard 
             *ngFor="let recipe of recipes"
+            [recipe_id]="recipe.recipe_id"
             [recipeTitle]="recipe.recipeTitle"
             [recipeDescription]="recipe.recipeDescription"
             [creatorName]="recipe.creatorName"

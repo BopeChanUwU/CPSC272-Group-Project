@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatIconModule } from "@angular/material/icon";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatButtonModule } from '@angular/material/button';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { RecipeService } from '../../../services/recipe.service';
 import { AuthService } from '../../../services/auth.service';
+import { SavedRecipiesService } from '../../../services/savedRecipies.service';
 
 @Component({
   selector: 'app-recipe-options-button',
@@ -16,11 +17,13 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RecipeOptionsButton {
   isMyrecipe = true;
+  @Input() recipeId: number = 0;
 
   constructor(private router: Router, 
     private recipeService: RecipeService, 
     private userService: UserService, 
-    private authService: AuthService) {}
+    private authService: AuthService,
+    private savedRecipeService: SavedRecipiesService) {}
 
   isMyrecipeFlag(): boolean {
     return this.isMyrecipe;
@@ -31,11 +34,14 @@ export class RecipeOptionsButton {
   }
 
   deleteRecipe() {
-    this.deleteRecipe();
+    this.recipeService.deleteRecipe(this.recipeId).subscribe(() => {
+      console.log('Recipe deleted successfully');
+    });
   }
 
   unlikeRecipe() {
-    this.unlikeRecipe();
-    //add logic to unlike saved recipe
+    this.savedRecipeService.unsaveRecipe(this.authService.userIdValue(), /*recipe_id*/ 0).subscribe(() => {
+      console.log('Recipe unsaved successfully');
+    });
   }
 }

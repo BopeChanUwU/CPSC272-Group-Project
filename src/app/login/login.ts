@@ -52,7 +52,7 @@ export class Login {
         console.log('User logged in:', res);
 
         // Use the user returned from backend
-        this.authService.login(Number(res.user_id));
+        this.authService.login(res);
 
         // Optionally store user for persistence
         localStorage.setItem('currentUser', JSON.stringify(res));
@@ -82,6 +82,14 @@ export class Login {
         if (res) {
           this.message = `User ${res.user_name} created successfully!`;
           console.log('New user:', res);
+          // Use the user returned from backend
+        this.authService.login(res);
+
+        // Optionally store user for persistence
+        localStorage.setItem('currentUser', JSON.stringify(res));
+
+        // Navigate to home page
+        this.router.navigate(['/home']);
         }
       });
   }

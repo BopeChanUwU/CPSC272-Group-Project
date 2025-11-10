@@ -9,6 +9,7 @@ import { RecipeOptionsButton } from '../../buttons/recipe-options-button/recipe-
   styleUrl: './recipecard.css'
 })
 export class Recipecard {
+  @Input() recipe_id: number = 0;
   @Input() ingredients: string[] = [];
   @Input() instructions: string[] = [];
   @Input() recipeTitle: string = '';
