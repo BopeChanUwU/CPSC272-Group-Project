@@ -5,12 +5,12 @@ import { catchError, of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule,HttpClientModule, RouterLink],
+  imports: [CommonModule, FormsModule,HttpClientModule],
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })

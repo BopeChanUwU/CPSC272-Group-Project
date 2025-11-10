@@ -18,4 +18,5 @@ export class Recipecard {
   @Input() likesCount: number = 0;
   @Input() imgSrc: string = '';
   @Input() isLiked: boolean = false;
+  @Input() isMyRecipe: boolean = false;
 }

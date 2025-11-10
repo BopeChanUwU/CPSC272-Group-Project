@@ -2,13 +2,20 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon class="fa fa-jelly-fill fa-regular fa-pencil fa-2x"></mat-icon>
-      <span>Edit</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>delete</mat-icon>
-      <span>Delete</span>
-    </button>
+    @if (isMyrecipeFlag() == false){
+      <button mat-menu-item>
+        <mat-icon class="fa fa-jelly-fill fa-regular fa-pencil fa-2x"></mat-icon>
+        <span>Unlike</span>
+      </button>
+    } @else {
+      <button mat-menu-item (click)="editRecipe()">
+        <mat-icon class="fa fa-jelly-fill fa-regular fa-pencil fa-2x"></mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    }
   </mat-menu>
   

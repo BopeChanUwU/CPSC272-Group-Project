@@ -4,12 +4,11 @@ import { Header } from "../../Components/bars/header/header";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Searchbar } from "../../Components/bars/searchbar/searchbar";
 import { Recipecard } from "../../Components/cards/recipecard/recipecard";
-import { DeleteButton } from "../../Components/buttons/delete-button/delete-button";
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-myrecipes',
-  imports: [Sidebar, Header, MatToolbarModule, Searchbar, Recipecard, DeleteButton, CommonModule],
+  imports: [Sidebar, Header, MatToolbarModule, Searchbar, Recipecard, CommonModule],
   templateUrl: './myrecipes.html',
   styleUrl: './myrecipes.css'
 })

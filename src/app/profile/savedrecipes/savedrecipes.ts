@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-savedrecipes',
-  imports: [Header, Sidebar, Searchbar, MatToolbarModule, MatCardModule, Recipecard, MatIconModule, DislikeButton, CommonModule],
+  imports: [Header, Sidebar, Searchbar, MatToolbarModule, MatCardModule, Recipecard, MatIconModule, CommonModule],
   templateUrl: './savedrecipes.html',
   styleUrl: './savedrecipes.css'
 })
