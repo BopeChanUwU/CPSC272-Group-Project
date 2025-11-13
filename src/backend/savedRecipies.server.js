@@ -18,7 +18,7 @@ router.post('/api/saved', async (req, res) => {
     }
 
     const result = await pool.query(
-      `INSERT INTO "savedRecipies" (recipe_id, user_id)
+      `INSERT INTO public.savedRecipies (recipe_id, user_id)
        VALUES ($1, $2)
        RETURNING *`,
       [recipe_id, user_id]
@@ -34,7 +34,7 @@ router.post('/api/saved', async (req, res) => {
 // GET all saved recipes
 router.get('/api/saved', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM "savedRecipies" ORDER BY user_id');
+    const result = await pool.query('SELECT * FROM public.savedRecipies ORDER BY user_id');
     res.json(result.rows);
   } catch (err) {
     console.error('READ SAVED RECIPES ERROR:', err.message);
@@ -47,7 +47,7 @@ router.get('/api/saved/user/:user_id', async (req, res) => {
   try {
     const { user_id } = req.params;
     const result = await pool.query(
-      `SELECT * FROM "savedRecipies" WHERE user_id = $1`,
+      `SELECT * FROM public.savedRecipies WHERE user_id = $1`,
       [user_id]
     );
     res.json(result.rows);
@@ -62,7 +62,7 @@ router.get('/api/saved/recipe/:recipe_id', async (req, res) => {
   try {
     const { recipe_id } = req.params;
     const result = await pool.query(
-      `SELECT * FROM "savedRecipies" WHERE recipe_id = $1`,
+      `SELECT * FROM public.savedRecipies WHERE recipe_id = $1`,
       [recipe_id]
     );
     res.json(result.rows);
@@ -81,7 +81,7 @@ router.delete('/api/saved', async (req, res) => {
     }
 
     const result = await pool.query(
-      `DELETE FROM "savedRecipies"
+      `DELETE FROM public.savedRecipies
        WHERE recipe_id = $1 AND user_id = $2
        RETURNING *`,
       [recipe_id, user_id]

@@ -8,7 +8,7 @@ router.post('/recipes', async (req, res) => {
     const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
 
     const result = await pool.query(
-      `INSERT INTO recipes (author_id, title, description, user_name, ingredients, instructions, image_url)
+      `INSERT INTO public.recipe (author_id, title, description, user_name, ingredients, instructions, image_url)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING *`,
       [author_id, title, description, user_name, ingredients, instructions, image_url]
@@ -24,7 +24,7 @@ router.post('/recipes', async (req, res) => {
 // READ all recipes
 router.get('/recipes', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM recipes ORDER BY recipe_id');
+    const result = await pool.query('SELECT * FROM public.recipe ORDER BY recipe_id');
     res.json(result.rows);
   } catch (err) {
     console.error('READ RECIPES ERROR:', err.message);
@@ -39,7 +39,7 @@ router.get('/recipes/author/:author_id', async (req, res) => {
     console.log('Fetching recipes for author_id:', author_id);
     
     const result = await pool.query(
-      'SELECT * FROM recipes WHERE author_id = $1 ORDER BY recipe_id',
+      'SELECT * FROM public.recipe WHERE author_id = $1 ORDER BY recipe_id',
       [author_id]
     );
 
@@ -56,7 +56,7 @@ router.get('/recipes/exclude/:author_id', async (req, res) => {
   try {
     const { author_id } = req.params;
     const result = await pool.query(
-      'SELECT * FROM recipes WHERE author_id != $1 ORDER BY recipe_id',
+      'SELECT * FROM public.recipe WHERE author_id != $1 ORDER BY recipe_id',
       [author_id]
     );
 
@@ -71,7 +71,7 @@ router.get('/recipes/exclude/:author_id', async (req, res) => {
 router.get('/recipes/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('SELECT * FROM recipes WHERE recipe_id = $1', [id]);
+    const result = await pool.query('SELECT * FROM public.recipe WHERE recipe_id = $1', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Recipe not found' });
@@ -91,7 +91,7 @@ router.put('/recipes/:id', async (req, res) => {
     const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
 
     const result = await pool.query(
-      `UPDATE recipes
+      `UPDATE public.recipe
        SET author_id=$1, title=$2, description=$3, user_name=$4,
            ingredients=$5, instructions=$6, image_url=$7
        WHERE recipe_id=$8
@@ -114,7 +114,7 @@ router.put('/recipes/:id', async (req, res) => {
 router.delete('/recipes/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query('DELETE FROM recipes WHERE recipe_id=$1 RETURNING *', [id]);
+    const result = await pool.query('DELETE FROM public.recipe WHERE recipe_id=$1 RETURNING *', [id]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ message: 'Recipe not found' });

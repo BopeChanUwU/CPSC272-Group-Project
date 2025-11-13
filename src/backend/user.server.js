@@ -15,7 +15,7 @@ router.post("/users", async (req, res) => {
   try {
     const { user_name, first_name, last_name, email, password, image_url } = req.body;
     const result = await pool.query(
-      `INSERT INTO users (user_name, first_name, last_name, email, password, image_url)
+      `INSERT INTO public.users (user_name, first_name, last_name, email, password, image_url)
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING *`,
       [user_name, first_name, last_name, email, password, image_url]
@@ -31,7 +31,7 @@ router.post("/users", async (req, res) => {
 // READ all users
 router.get("/users", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM users ORDER BY user_id");
+    const result = await pool.query("SELECT * FROM public.users ORDER BY user_id");
     res.json(result.rows);
   } catch (err) {
     console.error(err);
@@ -43,7 +43,7 @@ router.get("/users", async (req, res) => {
 router.get("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
+    const result = await pool.query("SELECT * FROM public.users WHERE user_id = $1", [id]);
     if (result.rows.length === 0) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -80,7 +80,7 @@ router.post('/login/auth', async (req, res) => {
   const { email, password } = req.body;
   try {
     const result = await pool.query(
-      'SELECT * FROM users WHERE email = $1 AND password = $2',
+      'SELECT * FROM public.users WHERE email = $1 AND password = $2',
       [email, password]
     );
 
