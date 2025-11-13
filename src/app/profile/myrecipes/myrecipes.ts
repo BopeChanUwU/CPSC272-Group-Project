@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Sidebar } from "../../Components/bars/sidebar/sidebar";
 import { Header } from "../../Components/bars/header/header";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -15,7 +15,7 @@ import { SavedRecipiesService } from '../../services/savedRecipies.service';
   templateUrl: './myrecipes.html',
   styleUrl: './myrecipes.css'
 })
-export class Myrecipes {
+export class Myrecipes implements OnInit {
   recipes: any[] = [];
 
   constructor(private authService: AuthService, private recipeService: RecipeService, savedRecipeService: SavedRecipiesService) {}

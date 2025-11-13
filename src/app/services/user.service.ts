@@ -6,7 +6,7 @@ import { User } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = `${environment.apiUrl}/users`;
+  private apiUrl = `${environment.user_api_url}/users`;
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {

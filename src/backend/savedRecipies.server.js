@@ -1,21 +1,19 @@
 const express = require('express');
-const cors = require('cors');
+const router = express.Router();
 const pool = require('./database');
-const app = express();
-const port = 3000;
 
 app.use(cors());
 app.use(express.json());
 
 // Simple test route
-app.get('/test', (req, res) => {
+router.get('/test', (req, res) => {
   res.send('Saved Recipes route works!');
 });
 
 // ----------------- CRUD ROUTES -----------------
 
 // SAVE a recipe (create entry)
-app.post('/api/saved', async (req, res) => {
+router.post('/api/saved', async (req, res) => {
   try {
     const { recipe_id, user_id } = req.body;
     if (!recipe_id || !user_id) {
@@ -23,7 +21,7 @@ app.post('/api/saved', async (req, res) => {
     }
 
     const result = await pool.query(
-      `INSERT INTO public."savedRecipies" (recipe_id, user_id)
+      `INSERT INTO "savedRecipies" (recipe_id, user_id)
        VALUES ($1, $2)
        RETURNING *`,
       [recipe_id, user_id]
@@ -37,9 +35,9 @@ app.post('/api/saved', async (req, res) => {
 });
 
 // GET all saved recipes
-app.get('/api/saved', async (req, res) => {
+router.get('/api/saved', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM public."savedRecipies" ORDER BY user_id');
+    const result = await pool.query('SELECT * FROM "savedRecipies" ORDER BY user_id');
     res.json(result.rows);
   } catch (err) {
     console.error('READ SAVED RECIPES ERROR:', err.message);
@@ -48,11 +46,11 @@ app.get('/api/saved', async (req, res) => {
 });
 
 // GET saved recipes by user
-app.get('/api/saved/user/:user_id', async (req, res) => {
+router.get('/api/saved/user/:user_id', async (req, res) => {
   try {
     const { user_id } = req.params;
     const result = await pool.query(
-      `SELECT * FROM public."savedRecipies" WHERE user_id = $1`,
+      `SELECT * FROM "savedRecipies" WHERE user_id = $1`,
       [user_id]
     );
     res.json(result.rows);
@@ -63,11 +61,11 @@ app.get('/api/saved/user/:user_id', async (req, res) => {
 });
 
 // GET saved recipes by recipe_id (optional)
-app.get('/api/saved/recipe/:recipe_id', async (req, res) => {
+router.get('/api/saved/recipe/:recipe_id', async (req, res) => {
   try {
     const { recipe_id } = req.params;
     const result = await pool.query(
-      `SELECT * FROM public."savedRecipies" WHERE recipe_id = $1`,
+      `SELECT * FROM "savedRecipies" WHERE recipe_id = $1`,
       [recipe_id]
     );
     res.json(result.rows);
@@ -78,7 +76,7 @@ app.get('/api/saved/recipe/:recipe_id', async (req, res) => {
 });
 
 // DELETE saved recipe (unsave)
-app.delete('/api/saved', async (req, res) => {
+router.delete('/api/saved', async (req, res) => {
   try {
     const { recipe_id, user_id } = req.body;
     if (!recipe_id || !user_id) {
@@ -86,7 +84,7 @@ app.delete('/api/saved', async (req, res) => {
     }
 
     const result = await pool.query(
-      `DELETE FROM public."savedRecipies"
+      `DELETE FROM "savedRecipies"
        WHERE recipe_id = $1 AND user_id = $2
        RETURNING *`,
       [recipe_id, user_id]
@@ -103,7 +101,4 @@ app.delete('/api/saved', async (req, res) => {
   }
 });
 
-// START SERVER
-app.listen(port, () => {
-  console.log(`✅ SavedRecipe server running on http://localhost:${port}`);
-});
+module.exports = router;

@@ -1,23 +1,17 @@
 // user.server.js
 const express = require('express');
-const cors = require('cors');
+const router = express.Router();
 const pool = require('./database'); // your database.js
-const app = express();
-const port = 3000;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
 
 // Simple test route
-app.get('/test', (req, res) => {
+router.get('/test', (req, res) => {
   res.send('Test route works!');
 });
 
 // ----------------- CRUD ROUTES -----------------
 
 // CREATE user
-app.post("/api/users", async (req, res) => {
+router.post("/api/users", async (req, res) => {
   try {
     const { user_name, first_name, last_name, email, password, image_url } = req.body;
     const result = await pool.query(
@@ -35,7 +29,7 @@ app.post("/api/users", async (req, res) => {
 
 
 // READ all users
-app.get("/api/users", async (req, res) => {
+router.get("/api/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM users ORDER BY user_id");
     res.json(result.rows);
@@ -46,7 +40,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 // READ single user by ID
-app.get("/api/users/:id", async (req, res) => {
+router.get("/api/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
@@ -61,7 +55,7 @@ app.get("/api/users/:id", async (req, res) => {
 });
 
 // LOGIN (POST)
-app.post('/api/users/login', async (req, res) => {
+router.post('/api/users/login', async (req, res) => {
   console.log('Login request body:', req.body); // debug
   const { email, password } = req.body;
 
@@ -82,7 +76,7 @@ app.post('/api/users/login', async (req, res) => {
   }
 });
 
-app.post('/login/auth', async (req, res) => {
+router.post('/login/auth', async (req, res) => {
   const { email, password } = req.body;
   try {
     const result = await pool.query(
@@ -104,7 +98,7 @@ app.post('/login/auth', async (req, res) => {
 
 
 // UPDATE user by ID
-app.put("/api/users/:id", async (req, res) => {
+router.put("/api/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { user_name, first_name, last_name, email, password, image_url } = req.body;
@@ -126,7 +120,7 @@ app.put("/api/users/:id", async (req, res) => {
 });
 
 // DELETE user by ID
-app.delete("/api/users/:id", async (req, res) => {
+router.delete("/api/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("DELETE FROM users WHERE user_id=$1 RETURNING *", [id]);
@@ -140,7 +134,4 @@ app.delete("/api/users/:id", async (req, res) => {
   }
 });
 
-// ----------------- START SERVER -----------------
-app.listen(port, () => {
-  console.log(`✅ Server running on http://localhost:${port}`);
-});
+module.exports = router;

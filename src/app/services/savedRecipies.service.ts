@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class SavedRecipiesService {
-  private apiUrl = `${environment.apiUrl}/saved`;
+  private apiUrl = `${environment.saved_recipe_api_url}/saved`;
 
   constructor(private http: HttpClient) {}
 
