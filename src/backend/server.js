@@ -12,10 +12,10 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Use routes
-app.use('/api/users', userRoutes);
-app.use('/api/recipes', recipeRoutes);
-app.use('/api/saved', savedRecipiesRoutes);
+// Mount routes with /api prefix
+app.use('/api', userRoutes);
+app.use('/api', recipeRoutes);
+app.use('/api', savedRecipiesRoutes);
 
 app.get('/', (req, res) => {
   res.send('Welcome to the potluck App API!');

@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('./database');
-
-app.use(cors());
-app.use(express.json());
+const { pool } = require('./database');
 
 // Simple test route
 router.get('/test', (req, res) => {

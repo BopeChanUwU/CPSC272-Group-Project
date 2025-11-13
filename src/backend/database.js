@@ -4,10 +4,10 @@ const { Pool } = require('pg');
 // Use environment variables for secure, best practice configuration
 const pool = new Pool({
   user: 'potluck',
-  host: 'potluck-db.c50wm28ege2t.us-east-2.rds.amazonaws.com', // or your database server IP
+  host: 'potluck-db.c50wm28ege2t.us-east-2.rds.amazonaws.com',
   database: 'potluck',
   password: 'potluck123',
-  port: 5432, // default PostgreSQL port
+  port: 5432,
   ssl: {
     rejectUnauthorized: false 
   }

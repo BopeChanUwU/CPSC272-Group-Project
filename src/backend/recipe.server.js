@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { pool } = require('./database'); // Destructure both
+const { pool } = require('./database');
 
 // CREATE recipe
-router.post('/api/recipes', async (req, res) => {
+router.post('/recipes', async (req, res) => {
   try {
     const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
 
-    const result = await pool.query( // Use pool.query
+    const result = await pool.query(
       `INSERT INTO recipes (author_id, title, description, user_name, ingredients, instructions, image_url)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING *`,
@@ -22,7 +22,7 @@ router.post('/api/recipes', async (req, res) => {
 });
 
 // READ all recipes
-router.get('/api/recipes', async (req, res) => {
+router.get('/recipes', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM recipes ORDER BY recipe_id');
     res.json(result.rows);
@@ -32,8 +32,43 @@ router.get('/api/recipes', async (req, res) => {
   }
 });
 
-// READ single recipe by ID
-router.get('/api/recipes/:id', async (req, res) => {
+// GET recipes by author - MOVE THIS BEFORE /recipes/:id
+router.get('/recipes/author/:author_id', async (req, res) => {
+  try {
+    const { author_id } = req.params;
+    console.log('Fetching recipes for author_id:', author_id);
+    
+    const result = await pool.query(
+      'SELECT * FROM recipes WHERE author_id = $1 ORDER BY recipe_id',
+      [author_id]
+    );
+
+    console.log('Found recipes:', result.rows.length);
+    res.json(result.rows);
+  } catch (err) {
+    console.error('GET RECIPES BY AUTHOR ERROR:', err);
+    res.status(500).json({ message: 'Error fetching recipes by author', error: err.message });
+  }
+});
+
+// GET recipes except author - MOVE THIS BEFORE /recipes/:id
+router.get('/recipes/exclude/:author_id', async (req, res) => {
+  try {
+    const { author_id } = req.params;
+    const result = await pool.query(
+      'SELECT * FROM recipes WHERE author_id != $1 ORDER BY recipe_id',
+      [author_id]
+    );
+
+    res.json(result.rows);
+  } catch (err) {
+    console.error('GET RECIPES EXCEPT AUTHOR ERROR:', err.message);
+    res.status(500).json({ message: 'Error fetching recipes excluding author' });
+  }
+});
+
+// READ single recipe by ID - MOVE THIS AFTER THE SPECIFIC ROUTES
+router.get('/recipes/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM recipes WHERE recipe_id = $1', [id]);
@@ -50,7 +85,7 @@ router.get('/api/recipes/:id', async (req, res) => {
 });
 
 // UPDATE recipe by ID
-router.put('/api/recipes/:id', async (req, res) => {
+router.put('/recipes/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const { author_id, title, description, user_name, ingredients, instructions, image_url } = req.body;
@@ -76,7 +111,7 @@ router.put('/api/recipes/:id', async (req, res) => {
 });
 
 // DELETE recipe by ID
-router.delete('/api/recipes/:id', async (req, res) => {
+router.delete('/recipes/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('DELETE FROM recipes WHERE recipe_id=$1 RETURNING *', [id]);
@@ -89,41 +124,6 @@ router.delete('/api/recipes/:id', async (req, res) => {
   } catch (err) {
     console.error('DELETE RECIPE ERROR:', err.message);
     res.status(500).json({ message: 'Error deleting recipe' });
-  }
-});
-
-// GET recipes by author - THIS IS THE ROUTE FAILING
-router.get('/api/recipes/author/:author_id', async (req, res) => {
-  try {
-    const { author_id } = req.params;
-    console.log('Fetching recipes for author_id:', author_id); // Debug log
-    
-    const result = await pool.query(
-      'SELECT * FROM recipes WHERE author_id = $1 ORDER BY recipe_id',
-      [author_id]
-    );
-
-    console.log('Found recipes:', result.rows.length); // Debug log
-    res.json(result.rows);
-  } catch (err) {
-    console.error('GET RECIPES BY AUTHOR ERROR:', err); // Log full error
-    res.status(500).json({ message: 'Error fetching recipes by author', error: err.message });
-  }
-});
-
-// GET recipes except author
-router.get('/api/recipes/exclude/:author_id', async (req, res) => {
-  try {
-    const { author_id } = req.params;
-    const result = await pool.query(
-      'SELECT * FROM recipes WHERE author_id != $1 ORDER BY recipe_id',
-      [author_id]
-    );
-
-    res.json(result.rows);
-  } catch (err) {
-    console.error('GET RECIPES EXCEPT AUTHOR ERROR:', err.message);
-    res.status(500).json({ message: 'Error fetching recipes excluding author' });
   }
 });
 

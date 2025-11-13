@@ -1,7 +1,7 @@
 // user.server.js
 const express = require('express');
 const router = express.Router();
-const pool = require('./database'); // your database.js
+const { pool} = require('./database'); // your database.js
 
 // Simple test route
 router.get('/test', (req, res) => {
@@ -11,7 +11,7 @@ router.get('/test', (req, res) => {
 // ----------------- CRUD ROUTES -----------------
 
 // CREATE user
-router.post("/api/users", async (req, res) => {
+router.post("/users", async (req, res) => {
   try {
     const { user_name, first_name, last_name, email, password, image_url } = req.body;
     const result = await pool.query(
@@ -29,7 +29,7 @@ router.post("/api/users", async (req, res) => {
 
 
 // READ all users
-router.get("/api/users", async (req, res) => {
+router.get("/users", async (req, res) => {
   try {
     const result = await pool.query("SELECT * FROM users ORDER BY user_id");
     res.json(result.rows);
@@ -40,7 +40,7 @@ router.get("/api/users", async (req, res) => {
 });
 
 // READ single user by ID
-router.get("/api/users/:id", async (req, res) => {
+router.get("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("SELECT * FROM users WHERE user_id = $1", [id]);
@@ -55,7 +55,7 @@ router.get("/api/users/:id", async (req, res) => {
 });
 
 // LOGIN (POST)
-router.post('/api/users/login', async (req, res) => {
+router.post('/users/login', async (req, res) => {
   console.log('Login request body:', req.body); // debug
   const { email, password } = req.body;
 
@@ -98,7 +98,7 @@ router.post('/login/auth', async (req, res) => {
 
 
 // UPDATE user by ID
-router.put("/api/users/:id", async (req, res) => {
+router.put("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { user_name, first_name, last_name, email, password, image_url } = req.body;
@@ -120,7 +120,7 @@ router.put("/api/users/:id", async (req, res) => {
 });
 
 // DELETE user by ID
-router.delete("/api/users/:id", async (req, res) => {
+router.delete("/users/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query("DELETE FROM users WHERE user_id=$1 RETURNING *", [id]);
