@@ -20,4 +20,5 @@ export class Recipecard {
   @Input() imgSrc: string = '';
   @Input() isLiked: boolean = false;
   @Input() isMyRecipe: boolean = false;
+  defaultPic: string = 'https://www.shutterstock.com/image-vector/image-not-found-failure-network-260nw-2330163829.jpg';
 }
