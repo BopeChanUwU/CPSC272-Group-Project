@@ -1,17 +1,30 @@
 <mat-card class="example-card" appearance="outlined">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-subtitle>{{recipe.user_name}}</mat-card-subtitle> <!-- this will store creators name from account  -->
+        <mat-card-subtitle>{{recipe.user_name}}</mat-card-subtitle>
     </mat-card-header>
+    
     <mat-form-field appearance='outline'>
-        <mat-label>Recipe name*</mat-label>
-        <input matInput type = "text" id="recipe-name" required="">
+        <mat-label>Recipe name</mat-label>
+        <input 
+            matInput 
+            type="text" 
+            id="recipe-name" 
+            name="recipe-name"
+            [(ngModel)]="recipe.title" 
+            placeholder="Enter recipe name">
     </mat-form-field>
-    <app-drag-n-drop-box>
-        <input type="file" id="recipe-image" hidden>
-    </app-drag-n-drop-box>
+    
+    <app-drag-n-drop-box (fileSelected)="onFileSelected($event)"></app-drag-n-drop-box>
+    
     <mat-form-field appearance='outline'>
-        <mat-label>Description*</mat-label>
-        <textarea matInput type="text" id="recipe-description" required=""></textarea>
+        <mat-label>Description</mat-label>
+        <textarea 
+            matInput 
+            id="recipe-description" 
+            name="recipe-description"
+            [(ngModel)]="recipe.description" 
+            placeholder="Enter recipe description"
+            rows="4"></textarea>
     </mat-form-field>
-</mat-card>  
+</mat-card>

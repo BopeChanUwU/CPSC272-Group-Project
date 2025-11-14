@@ -18,13 +18,46 @@ import { SavedRecipiesService } from '../../services/savedRecipies.service';
 export class Myrecipes implements OnInit {
   recipes: any[] = [];
 
-  constructor(private authService: AuthService, private recipeService: RecipeService, savedRecipeService: SavedRecipiesService) {}
+  constructor(
+    private authService: AuthService, 
+    private recipeService: RecipeService, 
+    private savedRecipeService: SavedRecipiesService
+  ) {}
 
   ngOnInit() {
-    // TODO: Replace this with actual service call to get user's recipes
-    this.recipeService.getRecipesByAuthor(this.authService.userIdValue()).subscribe((res: any[]) => {
-      this.recipes = res;
-      console.log('User recipes loaded:', this.recipes);
+    this.loadRecipes();
+  }
+
+  loadRecipes() {
+    this.recipeService.getRecipesByAuthor(this.authService.userIdValue()).subscribe({
+      next: (res: any[]) => {
+        console.log('Raw recipes from backend:', res);
+        
+        // Map the backend data to the format expected by recipe cards
+        this.recipes = res.map(recipe => {
+          console.log('Processing recipe:', recipe.recipe_id, 'Image URL present:', !!recipe.image_url);
+          
+          return {
+            recipe_id: recipe.recipe_id,
+            recipeTitle: recipe.title,
+            recipeDescription: recipe.description,
+            creatorName: recipe.user_name || this.authService.userNameValue(),
+            creatorProfilePic: '', 
+            imgSrc: recipe.image_url || '', // This should be the base64 data URL from backend
+            ingredients: recipe.ingredients || [],
+            instructions: recipe.instructions || [],
+            likesCount: 0,
+            isLiked: false,
+            isMyRecipe: true
+          };
+        });
+        
+        console.log('Processed recipes count:', this.recipes.length);
+        console.log('First recipe imgSrc length:', this.recipes[0]?.imgSrc?.length);
+      },
+      error: (err) => {
+        console.error('Error loading recipes:', err);
+      }
     });
   }
 }

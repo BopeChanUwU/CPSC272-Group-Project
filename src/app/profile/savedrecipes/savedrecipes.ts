@@ -6,7 +6,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCardModule } from "@angular/material/card";
 import { Recipecard } from "../../Components/cards/recipecard/recipecard";
 import { MatIconModule } from "@angular/material/icon";
-import { DislikeButton } from "../../Components/buttons/dislike-button/dislike-button";
 import { CommonModule } from '@angular/common';
 
 @Component({

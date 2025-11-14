@@ -2,8 +2,13 @@
 
 <main>
     <app-sidebar></app-sidebar>
-    <content> 
+    <content *ngIf="!isLoading"> 
         <app-creation-card></app-creation-card>
     </content>
-    <app-create-button (click)="editRecipe()"></app-create-button>
+    <content *ngIf="isLoading">
+        <p>Loading recipe data...</p>
+    </content>
+    <div (click)="editRecipe()">
+        <app-update-button></app-update-button>
+    </div>
 </main>

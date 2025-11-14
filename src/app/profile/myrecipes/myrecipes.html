@@ -7,15 +7,16 @@
         <app-recipecard 
             *ngFor="let recipe of recipes"
             [recipe_id]="recipe.recipe_id"
-            [recipeTitle]="recipe.title"
-            [recipeDescription]="recipe.description"
+            [recipeTitle]="recipe.recipeTitle"
+            [recipeDescription]="recipe.recipeDescription"
             [creatorName]="recipe.creatorName"
             [creatorProfilePic]="recipe.creatorProfilePic"
             [imgSrc]="recipe.imgSrc"
             [ingredients]="recipe.ingredients"
             [instructions]="recipe.instructions"
             [likesCount]="recipe.likesCount"
-            [isLiked]="recipe.isLiked">
+            [isLiked]="recipe.isLiked"
+            [isMyRecipe]="recipe.isMyRecipe">
         </app-recipecard>
     </content>
 </main>
