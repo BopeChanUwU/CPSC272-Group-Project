@@ -21,15 +21,18 @@ export class CreationCard {
     author_id: 0,
     title: '',
     description: '',
-    user_name: ''
+    user_name: '',
+    ingredients: [],
+    instructions: [],
+    image_url: new Blob()
   };
 
   constructor(private recipeService: RecipeService, private authService: AuthService) {
     this.recipe.author_id = this.authService.userIdValue();
-    this.recipe.user_name = this.authService.userValue()?.user_name || '';
+    this.recipe.user_name = this.authService.userNameValue();
   }
 
   userName(): string {
-    return this.authService.userValue()?.user_name || '';
+    return this.authService.userNameValue();
   }
 }

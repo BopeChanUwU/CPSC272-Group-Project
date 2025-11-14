@@ -9,9 +9,11 @@ export class AuthService {
   
   private loggedIn = false;
   private userId: number = -1; // user set to -1 when not logged in
-  private currentUser: User | null = null;
+  private user_name: string = '';
+  private email: string = '';
   
   constructor() {}
+
   isLoggedIn(): boolean {
     return this.loggedIn;
   }
@@ -21,6 +23,12 @@ export class AuthService {
     if (user.user_id != undefined)(
       this.userId = Number(user.user_id)
     );
+    if (user.user_name){
+      this.user_name = user.user_name;
+    }
+    if (user.email){
+      this.email = user.email;
+    }
   }
 
   logout(): void {
@@ -28,8 +36,12 @@ export class AuthService {
     this.userId = -1;
   }
 
-  userValue(): User | null {
-    return this.currentUser;
+  userNameValue(): string {
+    return this.user_name;
+  }
+
+  userEmailValue(): string {
+    return this.email;
   }
 
   userIdValue(): number {

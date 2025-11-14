@@ -7,8 +7,8 @@
         <app-recipecard 
             *ngFor="let recipe of recipes"
             [recipe_id]="recipe.recipe_id"
-            [recipeTitle]="recipe.recipeTitle"
-            [recipeDescription]="recipe.recipeDescription"
+            [recipeTitle]="recipe.title"
+            [recipeDescription]="recipe.description"
             [creatorName]="recipe.creatorName"
             [creatorProfilePic]="recipe.creatorProfilePic"
             [imgSrc]="recipe.imgSrc"

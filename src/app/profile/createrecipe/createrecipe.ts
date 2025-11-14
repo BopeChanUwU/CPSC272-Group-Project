@@ -23,28 +23,36 @@ export class Createrecipe implements Recipe {
   title: string;
   description: string;
   user_name: string;
-  ingredients?: string[] | undefined;
-  instructions?: string[] | undefined;
-  imageUrl?: string | undefined;
+  ingredients: string[];
+  instructions: string[];
+  image_url: Blob;
 
   constructor(private recipeService: RecipeService, private authService: AuthService) {
-    this.author_id = 0;
+    this.author_id = this.authService.userIdValue();
     this.title = "";
     this.description = "";
     this.user_name = "";
+    this.ingredients = ["! "];
+    this.instructions = [" . "];
+    this.image_url = new Blob();
   }
+  
 
   createRecipe() {
     this.author_id = this.authService.userIdValue();
     this.title = ((document.getElementById("recipe-name") as HTMLInputElement).value);
     this.description = ((document.getElementById("recipe-description") as HTMLInputElement).value);
-    this.user_name = this.authService.userValue()?.user_name || '';
+    this.user_name = this.authService.userNameValue();
     const newRecipe: Recipe = {
       author_id: this.author_id,
       title: this.title,
       description: this.description,
-      user_name: this.user_name
+      user_name: this.user_name,
+      ingredients: this.ingredients,
+      instructions: this.instructions,
+      image_url: this.image_url
     };
+
     this.recipeService.addRecipe(newRecipe).subscribe((res: Recipe) => {
       console.log('Recipe successfully created:', res);
     });
