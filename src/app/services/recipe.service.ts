@@ -6,9 +6,18 @@ import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class RecipeService {
+  private edit_recipe_id: number = 0;
   private apiUrl = `${environment.recipe_api_url}/recipes`;
   constructor(private http: HttpClient) {}
 
+  getEditRecipeId(): number {
+    return this.edit_recipe_id;
+  }
+
+  setEditRecipeId(id: number): void {
+    this.edit_recipe_id = id;
+  }
+  
   getRecipes(): Observable<Recipe[]> {
     return this.http.get<Recipe[]>(this.apiUrl);
   }

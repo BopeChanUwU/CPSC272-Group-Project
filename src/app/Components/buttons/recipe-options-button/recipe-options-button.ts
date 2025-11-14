@@ -17,7 +17,7 @@ import { SavedRecipiesService } from '../../../services/savedRecipies.service';
 })
 export class RecipeOptionsButton {
   isMyrecipe = true;
-  @Input() recipeId: number = -1;
+  @Input() recipe_id: number = -1;
 
   constructor(private router: Router, 
     private recipeService: RecipeService,  
@@ -29,17 +29,18 @@ export class RecipeOptionsButton {
   }
 
   editRecipe() {
+    this.recipeService.setEditRecipeId(this.recipe_id);
     this.router.navigate(['/edit_my_recipes']);
   }
 
   deleteRecipe() {
-    this.recipeService.deleteRecipe(this.recipeId).subscribe(() => {
+    this.recipeService.deleteRecipe(this.recipe_id).subscribe(() => {
       console.log('Recipe deleted successfully');
     });
   }
 
   unlikeRecipe() {
-    this.savedRecipeService.unsaveRecipe(this.authService.userIdValue(), /*recipe_id*/ 0).subscribe(() => {
+    this.savedRecipeService.unsaveRecipe(this.authService.userIdValue(), this.recipe_id).subscribe(() => {
       console.log('Recipe unsaved successfully');
     });
   }
