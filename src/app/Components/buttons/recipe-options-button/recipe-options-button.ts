@@ -17,11 +17,10 @@ import { SavedRecipiesService } from '../../../services/savedRecipies.service';
 })
 export class RecipeOptionsButton {
   isMyrecipe = true;
-  @Input() recipeId: number = 0;
+  @Input() recipeId: number = -1;
 
   constructor(private router: Router, 
-    private recipeService: RecipeService, 
-    private userService: UserService, 
+    private recipeService: RecipeService,  
     private authService: AuthService,
     private savedRecipeService: SavedRecipiesService) {}
 
