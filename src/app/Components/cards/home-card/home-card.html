@@ -5,23 +5,64 @@
     appearance="outlined">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{ this.recipe()?.title || 'Untitled Recipe' }}</mat-card-title>
-        <mat-card-subtitle>{{ this.recipe()?.user_name || 'Unknown' }}</mat-card-subtitle>
+        <mat-card-title>{{ recipe?.title || 'Untitled Recipe' }}</mat-card-title>
+        <mat-card-subtitle>{{ recipe?.user_name || 'Unknown' }}</mat-card-subtitle>
     </mat-card-header>
     <img 
         mat-card-image 
-        [src]="this.recipe()?.image_url || defaultImage"
+        [src]="recipe?.image_url || defaultImage"
         alt="Recipe Image"
         (error)="onImageError()">
     <mat-card-content>
-        <p>{{ this.recipe()?.description || 'No description available' }}</p>
+        <p>{{ recipe?.description || 'No description available' }}</p>
         <h4>Ingredients:</h4>
         <ul>
-          <li *ngFor="let ingredient of this.recipe()?.ingredients">{{ ingredient }}</li>
+          <li *ngFor="let ingredient of recipe?.ingredients">{{ ingredient }}</li>
         </ul>
         <h4>Instructions:</h4>
         <ol>
-          <li *ngFor="let instruction of this.recipe()?.instructions">{{ instruction }}</li>
+          <li *ngFor="let instruction of recipe?.instructions">{{ instruction }}</li>
         </ol>
     </mat-card-content>
 </mat-card>
+
+<main>
+    <!-- Loading State -->
+    <content *ngIf="isLoading()" style="text-align: center; padding: 2rem;">
+        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);">
+            <h2 style="color: #ff6e6e; margin-bottom: 1rem;">Loading Recipes...</h2>
+            <p style="color: #666; font-size: 1.1rem;">Please wait while we find recipes for you!</p>
+        </div>
+    </content>
+
+    <!-- Recipe Display -->
+    <ng-container *ngIf="!isLoading() && !noMoreRecipes()">
+        <content>
+            <app-skip-button (skipped)="onSkip()"></app-skip-button>
+        </content>
+
+        <content>      
+            <app-home-card 
+                id="home-card" 
+                [isLiked]="isLiked()" 
+                [isSkipped]="isSkipped()" 
+                [resetAnimation]="resetAnimation()"
+                [recipe]="currentRecipe()">
+                CHANGED: Pass currentRecipe() instead of currentRecipe
+            </app-home-card>
+        </content>
+
+        <content> 
+            <app-like-button (liked)="onLike()"></app-like-button>
+        </content>
+    </ng-container>
+
+    <!-- No More Recipes State -->
+    <content *ngIf="!isLoading() && noMoreRecipes()" style="text-align: center; padding: 2rem;">
+        <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);">
+            <h2 style="color: #ff6e6e; margin-bottom: 1rem;">No More Recipes!</h2>
+            <p style="color: #666; font-size: 1.1rem;">You've seen all available recipes.</p>
+            <p style="color: #999; margin-top: 0.5rem;">Check back later for new recipes!</p>
+        </div>
+    </content>
+</main>
