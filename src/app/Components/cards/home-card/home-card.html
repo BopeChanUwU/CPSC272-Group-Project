@@ -4,14 +4,24 @@
     'reset-position': resetAnimation}"
     appearance="outlined">
     <mat-card-header>
-        <div mat-card-avatar class = "example-header-image"></div>
-        <mat-card-title>{{recipeTitle}}</mat-card-title>
-        <mat-card-subtitle>{{creatorName}}</mat-card-subtitle>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ this.recipe()?.title || 'Untitled Recipe' }}</mat-card-title>
+        <mat-card-subtitle>{{ this.recipe()?.user_name || 'Unknown' }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="{{imgSrc}}" alt="Photo of a Shiba Inu">
+    <img 
+        mat-card-image 
+        [src]="this.recipe()?.image_url || defaultImage"
+        alt="Recipe Image"
+        (error)="onImageError()">
     <mat-card-content>
-        <p> {{recipeDescription}} </p>
-        <p> {{ingredients}} </p>
-        <p> {{instructions}} </p>
+        <p>{{ this.recipe()?.description || 'No description available' }}</p>
+        <h4>Ingredients:</h4>
+        <ul>
+          <li *ngFor="let ingredient of this.recipe()?.ingredients">{{ ingredient }}</li>
+        </ul>
+        <h4>Instructions:</h4>
+        <ol>
+          <li *ngFor="let instruction of this.recipe()?.instructions">{{ instruction }}</li>
+        </ol>
     </mat-card-content>
 </mat-card>

@@ -109,20 +109,36 @@ router.get('/recipes/author/:author_id', async (req, res) => {
 router.get('/recipes/exclude/:author_id', async (req, res) => {
   try {
     const { author_id } = req.params;
+    console.log('GET /recipes/exclude/' + author_id + ' called');
+    
     const result = await pool.query(
       'SELECT * FROM public.recipe WHERE author_id != $1 ORDER BY recipe_id',
       [author_id]
     );
 
-    const recipesWithImages = result.rows.map(recipe => ({
-      ...recipe,
-      image_url: recipe.image_url ? `data:image/jpeg;base64,${recipe.image_url.toString('base64')}` : null
-    }));
+    console.log('Found ' + result.rows.length + ' recipes for exclude query');
 
+    const recipesWithImages = result.rows.map(recipe => {
+      let imageUrl = null;
+      
+      if (recipe.image_url) {
+        if (Buffer.isBuffer(recipe.image_url)) {
+          const base64String = recipe.image_url.toString('base64');
+          imageUrl = `data:image/jpeg;base64,${base64String}`;
+        }
+      }
+      
+      return {
+        ...recipe,
+        image_url: imageUrl
+      };
+    });
+
+    console.log('Returning ' + recipesWithImages.length + ' recipes');
     res.json(recipesWithImages);
   } catch (err) {
     console.error('GET RECIPES EXCEPT AUTHOR ERROR:', err.message);
-    res.status(500).json({ message: 'Error fetching recipes excluding author' });
+    res.status(500).json({ message: 'Error fetching recipes excluding author', error: err.message });
   }
 });
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 import { CommonModule } from '@angular/common';
 
@@ -10,25 +10,32 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home-card.css'
 })
 export class HomeCard {
-
   @Input() isLiked: boolean = false;
   @Input() isSkipped: boolean = false;
   @Input() resetAnimation: boolean = false;
 
-  ingredients: string[] = ['1 cup of flour', '2 eggs', '1/2 cup of sugar', '1 tsp of baking powder'];
-  instructions: string[] = [
-    'Preheat the oven to 350°F (175°C).',
-    'In a bowl, mix the flour, sugar, and baking powder.',
-    'Add the eggs and stir until smooth.',
-    'Pour the batter into a greased baking pan.',
-    'Bake for 30 minutes or until a toothpick comes out clean.',
-    'Let it cool before serving.'
-  ];
-  recipeTitle: string = 'Delicious Cake';
-  recipeDescription: string = 'A simple and delicious cake recipe that is perfect for any occasion.';
-  creatorName: string = 'John Doe';
-  creatorProfilePic:  string = 'https://media.istockphoto.com/id/2171382633/vector/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.jpg?s=170667a&w=0&k=20&c=C0GFBgcEAPMXFFQBSK-rS2Omt9sUGImXfJE_8JOWC0M=';
-  likesCount: number = 120;
-  imgSrc: string = 'https://teakandthyme.com/wp-content/uploads/2024/05/jellycat-birthday-cake-DSC_9332-edit-1600.jpg';
-  
+  // Recipe data properties
+  @Input() recipe = signal<any>(null);
+  defaultImage = 'https://www.shutterstock.com/image-vector/image-not-found-failure-network-260nw-2330163829.jpg';
+
+  get displayImageSrc(): string {
+    if (this.recipe().image_url && this.recipe().image_url.startsWith('data:image')) {
+      return this.recipe().image_url;
+    } else if (this.recipe().image_url) {
+      return this.recipe().image_url;
+    } else {
+      return this.defaultImage;
+    }
+  }
+
+  onImageError() {
+    this.recipe.update((current) => ({
+      ...current,
+      image_url: this.defaultImage,
+    }));
+  }
+
+  ngOnChanges() {
+    console.log('Recipe updated in HomeCard:', this.recipe());
+  }
 }

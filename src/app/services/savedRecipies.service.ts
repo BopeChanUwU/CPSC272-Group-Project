@@ -3,19 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { savedRecipies } from '../models/savedRecipies.model';
 import { environment } from '../environments/environment';
+
 @Injectable({ providedIn: 'root' })
 export class SavedRecipiesService {
   private apiUrl = `${environment.saved_recipe_api_url}/saved`;
 
   constructor(private http: HttpClient) {}
 
-  // Save a recipe
+  // Save a recipe - now with correct parameter order matching your model
   saveRecipe(recipe_id: number, user_id: number): Observable<savedRecipies> {
+    console.log('Saving recipe:', { recipe_id, user_id });
     return this.http.post<savedRecipies>(this.apiUrl, { recipe_id, user_id });
   }
 
   // Unsave a recipe
-  unsaveRecipe(recipe_id: number, user_id: number): Observable<any> {
+  unsaveRecipe(user_id: number, recipe_id: number): Observable<any> {
+    console.log('Unsaving recipe:', { recipe_id, user_id });
     return this.http.delete(this.apiUrl, { body: { recipe_id, user_id } });
   }
 
