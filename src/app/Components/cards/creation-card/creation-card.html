@@ -24,7 +24,28 @@
             id="recipe-description" 
             name="recipe-description"
             [(ngModel)]="recipe.description" 
+            matTooltip="Provide a brief description of your recipe."
             placeholder="Enter recipe description"
+            rows="4"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance='outline'>
+        <mat-label>Ingredients</mat-label>
+        <textarea 
+            matInput 
+            id="recipe-ingredients" 
+            name="recipe-ingredients"
+            [(ngModel)]="recipe.ingredients" 
+            placeholder="Enter recipe ingredients, separated by commas"
+            rows="4"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance='outline'>
+        <mat-label>Instructions</mat-label>
+        <textarea 
+            matInput 
+            id="recipe-instructions" 
+            name="recipe-instructions"
+            [(ngModel)]="recipe.instructions" 
+            placeholder="Enter recipe instructions, separated by commas"
             rows="4"></textarea>
     </mat-form-field>
 </mat-card>

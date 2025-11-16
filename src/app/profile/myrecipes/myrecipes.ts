@@ -17,6 +17,7 @@ import { SavedRecipiesService } from '../../services/savedRecipies.service';
 })
 export class Myrecipes implements OnInit {
   recipes: any[] = [];
+  isLoading: boolean = true;
 
   constructor(
     private authService: AuthService, 
@@ -54,9 +55,11 @@ export class Myrecipes implements OnInit {
         
         console.log('Processed recipes count:', this.recipes.length);
         console.log('First recipe imgSrc length:', this.recipes[0]?.imgSrc?.length);
+        this.isLoading = false;
       },
       error: (err) => {
         console.error('Error loading recipes:', err);
+        this.isLoading = false;
       }
     });
   }

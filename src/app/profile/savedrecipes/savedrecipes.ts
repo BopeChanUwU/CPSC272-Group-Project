@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Header } from "../../Components/bars/header/header";
 import { Sidebar } from "../../Components/bars/sidebar/sidebar";
 import { Searchbar } from "../../Components/bars/searchbar/searchbar";
@@ -7,6 +7,10 @@ import { MatCardModule } from "@angular/material/card";
 import { Recipecard } from "../../Components/cards/recipecard/recipecard";
 import { MatIconModule } from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
+import { SavedRecipiesService } from '../../services/savedRecipies.service';
+import { RecipeService } from '../../services/recipe.service';
+import { AuthService } from '../../services/auth.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-savedrecipes',
@@ -14,34 +18,76 @@ import { CommonModule } from '@angular/common';
   templateUrl: './savedrecipes.html',
   styleUrl: './savedrecipes.css'
 })
-export class Savedrecipes {
+export class Savedrecipes implements OnInit {
   recipes: any[] = [];
+  isLoading: boolean = true;
+
+  constructor(
+    private savedRecipeService: SavedRecipiesService,
+    private recipeService: RecipeService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    // TODO: Replace this with actual service call to get user's recipes
-    this.recipes = [
-      {
-        recipeTitle: 'Delicious Cake',
-        recipeDescription: 'A simple and delicious cake recipe that is perfect for any occasion.',
-        creatorName: 'John Doe',
-        creatorProfilePic: 'https://media.istockphoto.com/id/2171382633/vector/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.jpg?s=170667a&w=0&k=20&c=C0GFBgcEAPMXFFQBSK-rS2Omt9sUGImXfJE_8JOWC0M=',
-        imgSrc: 'https://teakandthyme.com/wp-content/uploads/2024/05/jellycat-birthday-cake-DSC_9332-edit-1600.jpg',
-        ingredients: ['1 cup of flour', '2 eggs', '1/2 cup of sugar', '1 tsp of baking powder'],
-        instructions: ['Preheat the oven to 350°F (175°C).', 'In a bowl, mix the flour, sugar, and baking powder.'],
-        likesCount: 120,
-        isLiked: false
+    this.loadSavedRecipes();
+  }
+
+  loadSavedRecipes() {
+    const userId = this.authService.userIdValue();
+    console.log('Loading saved recipes for user:', userId);
+
+    // First, get the list of saved recipe IDs for this user
+    this.savedRecipeService.getSavedByUser(userId).subscribe({
+      next: (savedRecipes) => {
+        console.log('Saved recipe IDs:', savedRecipes);
+
+        if (savedRecipes.length === 0) {
+          console.log('No saved recipes found');
+          this.isLoading = false;
+          return;
+        }
+
+        // Get all recipes from the database
+        this.recipeService.getRecipes().subscribe({
+          next: (allRecipes) => {
+            console.log('All recipes:', allRecipes);
+
+            // Filter to only include saved recipes
+            const savedRecipeIds = savedRecipes.map(sr => sr.recipe_id);
+            const filteredRecipes = allRecipes.filter(recipe => 
+              savedRecipeIds.includes(recipe.recipe_id!)
+            );
+
+            console.log('Filtered saved recipes:', filteredRecipes);
+
+            // Map to the format expected by recipe cards
+            this.recipes = filteredRecipes.map(recipe => ({
+              recipe_id: recipe.recipe_id,
+              recipeTitle: recipe.title,
+              recipeDescription: recipe.description,
+              creatorName: recipe.user_name || 'Unknown',
+              creatorProfilePic: '',
+              imgSrc: recipe.image_url || '',
+              ingredients: recipe.ingredients || [],
+              instructions: recipe.instructions || [],
+              likesCount: 0,
+              isLiked: true, // They saved it, so it's liked
+              isMyRecipe: false
+            }));
+
+            console.log('Processed recipes for display:', this.recipes.length);
+            this.isLoading = false;
+          },
+          error: (err) => {
+            console.error('Error loading all recipes:', err);
+            this.isLoading = false;
+          }
+        });
       },
-      {
-        recipeTitle: 'Chocolate Cookies',
-        recipeDescription: 'Chewy chocolate chip cookies that everyone loves.',
-        creatorName: 'Jane Smith',
-        creatorProfilePic: 'https://media.istockphoto.com/id/2171382633/vector/user-profile-icon-anonymous-person-symbol-blank-avatar-graphic-vector-illustration.jpg?s=170667a&w=0&k=20&c=C0GFBgcEAPMXFFQBSK-rS2Omt9sUGImXfJE_8JOWC0M=',
-        imgSrc: 'https://bluebowlrecipes.com/wp-content/uploads/2024/08/triple-chocolate-chunk-cookies-7189-500x500.jpg',
-        ingredients: ['2 cups flour', '1 cup chocolate chips'],
-        instructions: ['Mix ingredients', 'Bake at 375°F for 12 minutes'],
-        likesCount: 85,
-        isLiked: true
+      error: (err) => {
+        console.error('Error loading saved recipes:', err);
+        this.isLoading = false;
       }
-    ];
+    });
   }
 }

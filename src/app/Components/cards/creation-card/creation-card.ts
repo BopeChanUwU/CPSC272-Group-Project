@@ -54,7 +54,9 @@ export class CreationCard {
     console.log('Getting recipe data:', {
       title: this.recipe.title,
       description: this.recipe.description,
-      imageSize: this.recipe.image_url?.size
+      imageSize: this.recipe.image_url?.size,
+      ingredients: this.recipe.ingredients,
+      instructions: this.recipe.instructions
     });
     return this.recipe;
   }
