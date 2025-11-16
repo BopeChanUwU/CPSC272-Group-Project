@@ -1,4 +1,4 @@
-import { Component, signal, ChangeDetectionStrategy, OnInit, ViewChild } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Header } from "../Components/bars/header/header";
@@ -34,7 +34,8 @@ export class Home implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private savedRecipeService: SavedRecipiesService,
-    private authService: AuthService
+    private authService: AuthService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -45,28 +46,18 @@ export class Home implements OnInit {
   loadRecipes() {
     console.log('Loading recipes for user:', this.authService.userIdValue());
     
-    // First, let's check if there are ANY recipes at all
-    this.recipeService.getRecipes().subscribe({
-      next: (allRecipes) => {
-        console.log('Total recipes in database:', allRecipes.length);
-        console.log('All recipes:', allRecipes);
-      }
-    });
-    
-    // Get all recipes except the current user's recipes
     this.recipeService.getRecipesExceptAuthor(this.authService.userIdValue()).subscribe({
       next: (recipes) => {
         console.log('Loaded recipes from backend (excluding current user):', recipes);
         console.log('Number of recipes:', recipes.length);
         
         if (recipes && recipes.length > 0) {
-          // Shuffle the recipes array to get random order
           this.availableRecipes = this.shuffleArray(recipes);
           console.log('Shuffled recipes:', this.availableRecipes);
           
           this.isLoading.set(false);
+          this.cdr.markForCheck();
           
-          // Use setTimeout to ensure the view is ready
           setTimeout(() => {
             this.displayCurrentRecipe();
           }, 100);
@@ -74,12 +65,14 @@ export class Home implements OnInit {
           console.log('No recipes available from backend');
           this.isLoading.set(false);
           this.noMoreRecipes.set(true);
+          this.cdr.markForCheck();
         }
       },
       error: (err) => {
         console.error('Error loading recipes:', err);
         this.isLoading.set(false);
         this.noMoreRecipes.set(true);
+        this.cdr.markForCheck();
       }
     });
   }
@@ -101,12 +94,14 @@ export class Home implements OnInit {
     if (index >= this.availableRecipes.length) {
       this.noMoreRecipes.set(true);
       console.log('No more recipes to display - reached end');
+      this.cdr.markForCheck();
       return;
     }
   
     const recipe = this.availableRecipes[index];
     console.log('Displaying recipe:', recipe);
-    this.currentRecipe.set(recipe); // Update the signal with the new recipe
+    this.currentRecipe.set(recipe);
+    this.cdr.markForCheck();
   }
 
   moveToNextRecipe() {
@@ -117,6 +112,7 @@ export class Home implements OnInit {
     } else {
       this.noMoreRecipes.set(true);
       console.log('Reached end of recipes');
+      this.cdr.markForCheck();
     }
   }
 
@@ -128,8 +124,8 @@ export class Home implements OnInit {
 
     this.isLiked.set(true);
     this.isLocked.set(true);
+    this.cdr.markForCheck();
     
-    // Save the recipe to savedRecipes table
     this.savedRecipeService.saveRecipe(recipe.recipe_id, this.authService.userIdValue()).subscribe({
       next: (res) => {
         console.log('Recipe saved successfully:', res);
@@ -139,10 +135,10 @@ export class Home implements OnInit {
       }
     });
     
-    // Animation and moving to next recipe
     setTimeout(() => {
       this.isLiked.set(false);
       this.resetAnimation.set(true);
+      this.cdr.markForCheck();
 
       setTimeout(() => {
         this.resetAnimation.set(false);
@@ -157,11 +153,12 @@ export class Home implements OnInit {
     
     this.isSkipped.set(true);
     this.isLocked.set(true);
+    this.cdr.markForCheck();
     
-    // Just move to next recipe without saving
     setTimeout(() => {
       this.isSkipped.set(false);
       this.resetAnimation.set(true);
+      this.cdr.markForCheck();
 
       setTimeout(() => {
         this.resetAnimation.set(false);

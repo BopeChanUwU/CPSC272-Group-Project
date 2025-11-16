@@ -1,5 +1,4 @@
-// home-card.ts - Receive plain object, not signal
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatCardModule } from "@angular/material/card";
 import { CommonModule } from '@angular/common';
 
@@ -14,8 +13,6 @@ export class HomeCard {
   @Input() isLiked: boolean = false;
   @Input() isSkipped: boolean = false;
   @Input() resetAnimation: boolean = false;
-
-  // CHANGED: Accept plain object instead of signal
   @Input() recipe: any = null;
   
   defaultImage = 'https://www.shutterstock.com/image-vector/image-not-found-failure-network-260nw-2330163829.jpg';
