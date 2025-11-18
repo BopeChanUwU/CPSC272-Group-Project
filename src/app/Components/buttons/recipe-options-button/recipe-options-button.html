@@ -3,7 +3,7 @@
   </button>
   <mat-menu #menu="matMenu">
     @if (isMyRecipeFlag() == false){
-      <button mat-menu-item>
+      <button mat-menu-item (click)="unlikeRecipe()">
         <mat-icon class="fa fa-jelly-fill fa-regular fa-pencil fa-2x"></mat-icon>
         <span>Unlike</span>
       </button>
