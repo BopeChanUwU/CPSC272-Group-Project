@@ -6,7 +6,7 @@
         <mat-card-subtitle>{{creatorName}}</mat-card-subtitle>
         </div>
         <div class = "right-content" ></div>
-        <app-recipe-options-button [recipe_id] = recipe_id ></app-recipe-options-button>
+        <app-recipe-options-button [recipe_id] = recipe_id [isMyRecipe] = isMyRecipe ></app-recipe-options-button>
     </mat-card-header>
     <img mat-card-image src="{{imgSrc}}" alt="{{defaultPic}}" >
     <mat-card-content>

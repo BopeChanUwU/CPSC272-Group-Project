@@ -21,6 +21,7 @@ import { forkJoin } from 'rxjs';
 export class Savedrecipes implements OnInit {
   recipes: any[] = [];
   isLoading: boolean = true;
+  isMyRecipe: boolean = false;
 
   constructor(
     private savedRecipeService: SavedRecipiesService,

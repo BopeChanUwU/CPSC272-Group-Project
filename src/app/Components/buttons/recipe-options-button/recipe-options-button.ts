@@ -16,7 +16,7 @@ import { SavedRecipiesService } from '../../../services/savedRecipies.service';
   styleUrl: './recipe-options-button.css'
 })
 export class RecipeOptionsButton {
-  isMyrecipe = true;
+  @Input() isMyRecipe: boolean = true;
   @Input() recipe_id: number = -1;
 
   constructor(private router: Router, 
@@ -24,8 +24,8 @@ export class RecipeOptionsButton {
     private authService: AuthService,
     private savedRecipeService: SavedRecipiesService) {}
 
-  isMyrecipeFlag(): boolean {
-    return this.isMyrecipe;
+  isMyRecipeFlag(): boolean {
+    return this.isMyRecipe;
   }
 
   editRecipe() {
