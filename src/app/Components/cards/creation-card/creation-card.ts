@@ -29,7 +29,7 @@ export class CreationCard {
     image_url: new Blob()
   };
 
-  constructor(private recipeService: RecipeService, private authService: AuthService) {
+  constructor(private authService: AuthService) {
     this.recipe.author_id = this.authService.userIdValue();
     this.recipe.user_name = this.authService.userNameValue();
   }

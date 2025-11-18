@@ -6,5 +6,5 @@ export interface Recipe {
   user_name?: string;
   ingredients?: string[];
   instructions?: string[];
-  image_url?: Blob;
+  image_url?: Blob; // Allow Blob, base64 string, or null
 }

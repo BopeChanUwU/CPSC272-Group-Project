@@ -49,11 +49,27 @@ router.get('/recipes', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM public.recipe ORDER BY recipe_id');
     
-    // Convert BYTEA to base64 for each recipe
-    const recipesWithImages = result.rows.map(recipe => ({
-      ...recipe,
-      image_url: recipe.image_url ? recipe.image_url.toString('base64') : null
-    }));
+    console.log('Found', result.rows.length, 'total recipes');
+    
+    // Convert BYTEA to base64 data URL for each recipe
+    const recipesWithImages = result.rows.map(recipe => {
+      let imageUrl = null;
+      
+      if (recipe.image_url) {
+        if (Buffer.isBuffer(recipe.image_url)) {
+          const base64String = recipe.image_url.toString('base64');
+          imageUrl = `data:image/jpeg;base64,${base64String}`;
+          console.log('Recipe', recipe.recipe_id, 'has image, size:', recipe.image_url.length, 'bytes');
+        } else {
+          console.log('Recipe', recipe.recipe_id, 'image_url is not a Buffer:', typeof recipe.image_url);
+        }
+      }
+      
+      return {
+        ...recipe,
+        image_url: imageUrl
+      };
+    });
     
     res.json(recipesWithImages);
   } catch (err) {
