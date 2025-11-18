@@ -7,7 +7,6 @@ import { Recipecard } from "../../Components/cards/recipecard/recipecard";
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { RecipeService } from '../../services/recipe.service';
-import { SavedRecipiesService } from '../../services/savedRecipies.service';
 
 @Component({
   selector: 'app-myrecipes',
@@ -21,8 +20,7 @@ export class Myrecipes implements OnInit {
 
   constructor(
     private authService: AuthService, 
-    private recipeService: RecipeService, 
-    private savedRecipeService: SavedRecipiesService
+    private recipeService: RecipeService
   ) {}
 
   ngOnInit() {
@@ -34,17 +32,17 @@ export class Myrecipes implements OnInit {
       next: (res: any[]) => {
         console.log('Raw recipes from backend:', res);
         
-        // Map the backend data to the format expected by recipe cards
         this.recipes = res.map(recipe => {
-          console.log('Processing recipe:', recipe.recipe_id, 'Image URL present:', !!recipe.image_url);
+          console.log('Recipe:', recipe.recipe_id, 'Profile pic:', recipe.user_profile_pic ? 'Yes' : 'No');
           
           return {
             recipe_id: recipe.recipe_id,
             recipeTitle: recipe.title,
             recipeDescription: recipe.description,
             creatorName: recipe.user_name || this.authService.userNameValue(),
-            creatorProfilePic: '', 
-            imgSrc: recipe.image_url || '', // This should be the base64 data URL from backend
+            // KEY FIX: Pass the user_profile_pic from backend
+            creatorProfilePic: recipe.user_profile_pic || '',
+            imgSrc: recipe.image_url || '',
             ingredients: recipe.ingredients || [],
             instructions: recipe.instructions || [],
             likesCount: 0,
@@ -53,8 +51,7 @@ export class Myrecipes implements OnInit {
           };
         });
         
-        console.log('Processed recipes count:', this.recipes.length);
-        console.log('First recipe imgSrc length:', this.recipes[0]?.imgSrc?.length);
+        console.log('Processed recipes with profile pics:', this.recipes.length);
         this.isLoading = false;
       },
       error: (err) => {

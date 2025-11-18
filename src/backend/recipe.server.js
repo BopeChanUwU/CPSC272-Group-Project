@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const { pool } = require('./database');
 
+// Helper function to convert image buffer to base64
+function convertImageToBase64(imageBuffer) {
+  if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) return null;
+  return `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+}
+
 // CREATE recipe with image handling
 router.post('/recipes', async (req, res) => {
   try {
@@ -44,32 +50,23 @@ router.post('/recipes', async (req, res) => {
   }
 });
 
-// READ all recipes with image conversion
+// GET all recipes WITH user profile pictures
 router.get('/recipes', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM public.recipe ORDER BY recipe_id');
+    const result = await pool.query(`
+      SELECT 
+        r.*,
+        u.image_url as user_profile_pic
+      FROM public.recipe r
+      LEFT JOIN public.users u ON r.author_id = u.user_id
+      ORDER BY r.recipe_id
+    `);
     
-    console.log('Found', result.rows.length, 'total recipes');
-    
-    // Convert BYTEA to base64 data URL for each recipe
-    const recipesWithImages = result.rows.map(recipe => {
-      let imageUrl = null;
-      
-      if (recipe.image_url) {
-        if (Buffer.isBuffer(recipe.image_url)) {
-          const base64String = recipe.image_url.toString('base64');
-          imageUrl = `data:image/jpeg;base64,${base64String}`;
-          console.log('Recipe', recipe.recipe_id, 'has image, size:', recipe.image_url.length, 'bytes');
-        } else {
-          console.log('Recipe', recipe.recipe_id, 'image_url is not a Buffer:', typeof recipe.image_url);
-        }
-      }
-      
-      return {
-        ...recipe,
-        image_url: imageUrl
-      };
-    });
+    const recipesWithImages = result.rows.map(recipe => ({
+      ...recipe,
+      image_url: convertImageToBase64(recipe.image_url),
+      user_profile_pic: convertImageToBase64(recipe.user_profile_pic)
+    }));
     
     res.json(recipesWithImages);
   } catch (err) {
@@ -78,41 +75,29 @@ router.get('/recipes', async (req, res) => {
   }
 });
 
-// GET recipes by author with image conversion
+// GET recipes by author WITH user profile picture
 router.get('/recipes/author/:author_id', async (req, res) => {
   try {
     const { author_id } = req.params;
     console.log('Fetching recipes for author_id:', author_id);
     
-    const result = await pool.query(
-      'SELECT * FROM public.recipe WHERE author_id = $1 ORDER BY recipe_id',
-      [author_id]
-    );
+    const result = await pool.query(`
+      SELECT 
+        r.*,
+        u.image_url as user_profile_pic
+      FROM public.recipe r
+      LEFT JOIN public.users u ON r.author_id = u.user_id
+      WHERE r.author_id = $1
+      ORDER BY r.recipe_id
+    `, [author_id]);
 
     console.log('Found', result.rows.length, 'recipes');
     
-    // Convert BYTEA to base64 with proper data URL
-    const recipesWithImages = result.rows.map(recipe => {
-      let imageUrl = null;
-      
-      if (recipe.image_url) {
-        // Check if image_url is a Buffer
-        if (Buffer.isBuffer(recipe.image_url)) {
-          const base64String = recipe.image_url.toString('base64');
-          imageUrl = `data:image/jpeg;base64,${base64String}`;
-          console.log('Recipe', recipe.recipe_id, 'has image, size:', recipe.image_url.length, 'bytes');
-        } else {
-          console.log('Recipe', recipe.recipe_id, 'image_url is not a Buffer:', typeof recipe.image_url);
-        }
-      } else {
-        console.log('Recipe', recipe.recipe_id, 'has no image_url');
-      }
-      
-      return {
-        ...recipe,
-        image_url: imageUrl
-      };
-    });
+    const recipesWithImages = result.rows.map(recipe => ({
+      ...recipe,
+      image_url: convertImageToBase64(recipe.image_url),
+      user_profile_pic: convertImageToBase64(recipe.user_profile_pic)
+    }));
 
     res.json(recipesWithImages);
   } catch (err) {
@@ -121,34 +106,29 @@ router.get('/recipes/author/:author_id', async (req, res) => {
   }
 });
 
-// GET recipes except author with image conversion
+// GET recipes except author WITH user profile pictures
 router.get('/recipes/exclude/:author_id', async (req, res) => {
   try {
     const { author_id } = req.params;
     console.log('GET /recipes/exclude/' + author_id + ' called');
     
-    const result = await pool.query(
-      'SELECT * FROM public.recipe WHERE author_id != $1 ORDER BY recipe_id',
-      [author_id]
-    );
+    const result = await pool.query(`
+      SELECT 
+        r.*,
+        u.image_url as user_profile_pic
+      FROM public.recipe r
+      LEFT JOIN public.users u ON r.author_id = u.user_id
+      WHERE r.author_id != $1
+      ORDER BY r.recipe_id
+    `, [author_id]);
 
     console.log('Found ' + result.rows.length + ' recipes for exclude query');
 
-    const recipesWithImages = result.rows.map(recipe => {
-      let imageUrl = null;
-      
-      if (recipe.image_url) {
-        if (Buffer.isBuffer(recipe.image_url)) {
-          const base64String = recipe.image_url.toString('base64');
-          imageUrl = `data:image/jpeg;base64,${base64String}`;
-        }
-      }
-      
-      return {
-        ...recipe,
-        image_url: imageUrl
-      };
-    });
+    const recipesWithImages = result.rows.map(recipe => ({
+      ...recipe,
+      image_url: convertImageToBase64(recipe.image_url),
+      user_profile_pic: convertImageToBase64(recipe.user_profile_pic)
+    }));
 
     console.log('Returning ' + recipesWithImages.length + ' recipes');
     res.json(recipesWithImages);
