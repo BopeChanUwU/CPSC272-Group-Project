@@ -34,7 +34,7 @@
 }
 
 .dragBox {
-  width: 250px;
+  width: 600px;
   height: 100px;
   margin: 0 auto;
   position: relative;
@@ -69,8 +69,8 @@
 }
 
 #preview img {
-  max-width: 250px;
-  max-height: 250px;
+  max-width: 300px;
+  max-height: 300px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
