@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 
-const userRoutes = require('backend/user.server');
-const recipeRoutes = require('backend/recipe.server.js');
-const savedRecipiesRoutes = require('backend/savedRecipies.server');
+const userRoutes = require('/Users/tristensandhu/Desktop/hello-world/backend/user.server.js');
+const recipeRoutes = require('/Users/tristensandhu/Desktop/hello-world/backend/recipe.server.js');
+const savedRecipiesRoutes = require('/Users/tristensandhu/Desktop/hello-world/backend/savedRecipies.server.js');
 
 const app = express();
 const port = 3000;
