@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<main>
+    <app-sidebar></app-sidebar>
+    <content> 
+        <app-searchbar class="searchbar"></app-searchbar>
+        
+        <!-- Loading State -->
+        <div *ngIf="isLoading" style="text-align: center; padding: 2rem; margin-top: 200px;">
+            <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);">
+                <h2 style="color: #ff6e6e; margin-bottom: 1rem;">Loading Saved Recipes...</h2>
+                <p style="color: #666; font-size: 1.1rem;">Please wait...</p>
+            </div>
+        </div>
+
+        <!-- No Saved Recipes State -->
+        <div *ngIf="!isLoading && recipes.length === 0" style="text-align: center; padding: 2rem; margin-top: 200px;">
+            <div style="background: white; padding: 3rem; border-radius: 20px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1);">
+                <h2 style="color: #ff6e6e; margin-bottom: 1rem;">No Saved Recipes</h2>
+                <p style="color: #666; font-size: 1.1rem;">You haven't saved any recipes yet.</p>
+                <p style="color: #999; margin-top: 0.5rem;">Go to the home page to discover and save recipes!</p>
+            </div>
+        </div>
+
+        <!-- Recipe Cards -->
+        <app-recipecard 
+            *ngFor="let recipe of recipes"
+            [recipe_id]="recipe.recipe_id"
+            [recipeTitle]="recipe.recipeTitle"
+            [recipeDescription]="recipe.recipeDescription"
+            [creatorName]="recipe.creatorName"
+            [creatorProfilePic]="recipe.creatorProfilePic"
+            [imgSrc]="recipe.imgSrc"
+            [ingredients]="recipe.ingredients"
+            [instructions]="recipe.instructions"
+            [likesCount]="recipe.likesCount"
+            [isLiked]="recipe.isLiked"
+            [isMyRecipe]=false>
+        </app-recipecard>
+    </content>
+</main>

@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<main>
+    <app-sidebar></app-sidebar>
+    <content *ngIf="!isLoading"> 
+        <app-creation-card></app-creation-card>
+    </content>
+    <content *ngIf="isLoading">
+        <p>Loading recipe data...</p>
+    </content>
+    <div (click)="editRecipe()">
+        <app-update-button></app-update-button>
+    </div>
+</main>

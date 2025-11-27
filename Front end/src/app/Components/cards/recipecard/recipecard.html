@@ -1,0 +1,17 @@
+<mat-card class="example-card" appearance="outlined">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <div class = "left-content">
+        <mat-card-title>{{recipeTitle}}</mat-card-title>
+        <mat-card-subtitle>{{creatorName}}</mat-card-subtitle>
+        </div>
+        <div class = "right-content" ></div>
+        <app-recipe-options-button [recipe_id] = recipe_id [isMyRecipe] = isMyRecipe ></app-recipe-options-button>
+    </mat-card-header>
+    <img mat-card-image src="{{imgSrc}}" alt="{{defaultPic}}" >
+    <mat-card-content>
+        <p> {{recipeDescription}} </p>
+        <p> {{ingredients}} </p>
+        <p> {{instructions}} </p>
+    </mat-card-content>
+</mat-card>

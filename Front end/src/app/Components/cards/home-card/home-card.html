@@ -1,0 +1,27 @@
+<mat-card class="example-card" [ngClass]="{
+    'swipe-right': isLiked,
+    'swipe-left': isSkipped,
+    'reset-position': resetAnimation}"
+    appearance="outlined">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ recipe?.title || 'Untitled Recipe' }}</mat-card-title>
+        <mat-card-subtitle>{{ recipe?.user_name || 'Unknown' }}</mat-card-subtitle>
+    </mat-card-header>
+    <img 
+        mat-card-image 
+        [src]="recipe?.image_url || defaultImage"
+        alt="Recipe Image"
+        (error)="onImageError()">
+    <mat-card-content>
+        <p>{{ recipe?.description || 'No description available' }}</p>
+        <h4>Ingredients:</h4>
+        <ul>
+          <li *ngFor="let ingredient of recipe?.ingredients">{{ ingredient }}</li>
+        </ul>
+        <h4>Instructions:</h4>
+        <ol>
+          <li *ngFor="let instruction of recipe?.instructions">{{ instruction }}</li>
+        </ol>
+    </mat-card-content>
+</mat-card>

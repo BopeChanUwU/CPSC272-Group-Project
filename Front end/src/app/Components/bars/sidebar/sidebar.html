@@ -1,0 +1,58 @@
+
+<div class="area"></div><nav class="main-menu">
+        <ul>
+            <li>
+                <a [routerLink]="['/my_recipes']">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
+                       My Recipes
+                    </span>
+                </a>
+            </li>
+            <li class="has-subnav">
+                <a [routerLink]="['/saved_recipes']">
+                    <i class="fa fa-jelly-fill fa-regular fa-heart fa-2x"></i>
+                    <span class="nav-text">
+                        Saved Recipes
+                    </span>
+                </a>
+                
+            </li>
+            <li class="has-subnav">
+                <a [routerLink]="['/create_recipe']">
+                    <i class="fa fa-jelly-fill fa-regular fa-pencil fa-2x"></i>
+                    <span class="nav-text">
+                        Create Recipe
+                    </span>
+                </a>
+                
+            </li>
+            <li>
+               <a [routerLink]="['/settings']">
+                   <i class="fa fa-cogs fa-2x"></i>
+                    <span class="nav-text">
+                        Settings
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a [routerLink]="['/about']">
+                   <i class="fa fa-info fa-2x"></i>
+                    <span class="nav-text">
+                        About Us
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a (click)="logout()">
+                      <i class="fa fa-power-off fa-2x"></i>
+                     <span class="nav-text">
+                         Logout
+                     </span>
+                 </a>
+             </li>  
+        </ul>
+    </nav>
+
+
+

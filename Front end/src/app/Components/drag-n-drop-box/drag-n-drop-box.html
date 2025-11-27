@@ -1,0 +1,31 @@
+<div class="uploadOuter">
+  <div 
+    class="dragBox" 
+    [class.draging]="isDragging"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)">
+    
+    <span *ngIf="!previewUrl">Drag and Drop image here</span>
+    
+    <input 
+      #fileInput
+      type="file" 
+      (change)="onFileSelected($event)" 
+      id="uploadFile" 
+      accept="image/*" 
+      style="position: absolute; height: 100%; width: 100%; opacity: 0; top: 0; left: 0; cursor: pointer;" />
+  </div>
+  
+  <br>
+  <strong>OR</strong>
+  <br>
+  
+  <label for="uploadFile" class="btn btn-primary">Upload Image</label>
+</div>
+
+<div id="preview" *ngIf="previewUrl">
+  <img [src]="previewUrl" alt="Preview" />
+  <br>
+  <button type="button" (click)="clearFile()" class="clear-btn">Clear</button>
+</div>
